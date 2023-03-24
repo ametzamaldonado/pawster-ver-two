@@ -11,10 +11,5 @@
 
 .right-container {
   grid-area: b;
-}
-
-.temp {
-  margin: 60px;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
