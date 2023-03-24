@@ -75,7 +75,7 @@ const animControls = useAnimation({
           rotate: rotateValue,
           opacity: opacityValue,
         }}
-        onDragEnd={handleDragEnd || handleSwipeLeft || handleSwipeRight}
+        onDragEnd={handleDragEnd}
       />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <button onClick={handleSwipeLeft}>Swipe Left</button>

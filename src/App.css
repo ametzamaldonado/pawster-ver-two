@@ -5,11 +5,16 @@
   height: 100vh;
 }
 
-.box-a{
+.left-container {
   grid-area: a;
 }
 
-.box-b{
+.right-container {
   grid-area: b;
-  margin-top: 10; 
+}
+
+.temp {
+  margin: 60px;
+  justify-content: center;
+  align-items: center;
 }
