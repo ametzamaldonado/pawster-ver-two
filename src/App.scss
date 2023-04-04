@@ -1,0 +1,109 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin laptop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+@import url('https://fonts.cdnfonts.com/css/gotham');
+
+body {
+  font-family: 'Gotham', sans-serif;
+}
+
+
+.App {
+  display: grid;
+  grid-template-areas: "a b";
+  grid-template-columns: 1fr 3.5fr;
+  height: 100vh;
+
+  @include mobile {
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "a"
+    "b";
+  }
+}
+
+.left-container {
+  grid-area: a;
+  width: 375px ;
+}
+
+.right-container {
+  grid-area: b;
+  text-align: center;
+  background-color: rgb(245, 245, 245);
+}
+
+.wholePage-container {
+  grid-column: span 2;
+}
+
+.center-items {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 'a' tag css */
+a {
+  text-decoration: none;
+  color: inherit;
+  // color: black;
+  font-style:normal;
+
+  &:hover {
+      // color: white;
+    cursor: pointer;
+  }
+}
+
+/* a:hover {
+
+} */
+
+/* For IMG tags */
+.round_styling {
+  border-radius: 50%;
+}
+
+
+// textarea {
+//   resize: none;
+// }
+
+/* @media only screen and (max-width: 541px) {
+  
+  .App {
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "a"
+    "b";
+  }
+
+  .left-container {
+    /* width: auto; */
+    /* display: none; 
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: 
+  [class*="col-"] {
+    width: 100%;
+  }
+} */

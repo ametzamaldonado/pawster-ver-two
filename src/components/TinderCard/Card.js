@@ -43,7 +43,7 @@ export default function Card({ image, color, motionValue, animControls, motionDi
     console.log(motionDirection)
 
     return (
-        <div className="card" >
+        <div className="card-component" >
             <motion.div
                 drag="x"
                 dragConstraints={{ left: -300, right: 300 }}

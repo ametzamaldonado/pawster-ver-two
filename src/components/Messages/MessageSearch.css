@@ -1,0 +1,25 @@
+.subtle_searchInput {
+    background-color: inherit;
+    outline: 0;
+    width: 100%;
+    margin-top: 10px;
+    border-width: 0 0 2px;
+    border: 3px solid rgba(228,0,113,1);
+}
+
+.no_buttonStyling {
+    background: none;
+	color: inherit;
+    border: none;
+	cursor: pointer;
+}
+
+/* 
+    Search Icon,
+    Gear Icon, 
+*/
+.bi-search, .bi-gear {
+    width: 25%;
+    padding: 20%;
+    font-size: 1rem;
+}

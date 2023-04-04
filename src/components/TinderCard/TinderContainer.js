@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useMotionValue, useAnimation } from "framer-motion";
+import CardButtons from "./CardButtons";
 import Card from './Card';
 import './TinderContainer.css'
-
-import { useMotionValue, useAnimation } from "framer-motion";
+import { cards } from "../../data/data";
 
 function TinderContainer() {
   const [motionDirection, setMotionDirection] = useState(null);
@@ -15,24 +16,6 @@ function TinderContainer() {
   //     transition: { duration: .3 },
   // });
 
-  const cards = [
-    {
-      image: 'https://img.icons8.com/color/452/GeeksforGeeks.png',
-      color: '#55ccff'
-    },
-    {
-      image: 'https://img.icons8.com/color/452/GeeksforGeeks.png',
-      color: '#e8e8e8'
-    },
-    {
-      image: 'https://img.icons8.com/color/452/GeeksforGeeks.png',
-      color: '#0a043c'
-    },
-    {
-      image: 'https://img.icons8.com/color/452/GeeksforGeeks.png',
-      color: 'black'
-    }
-  ];
 
   const handleSwipeLeft = () => {
     setMotionDirection("left");
@@ -59,13 +42,17 @@ function TinderContainer() {
           setMotionDirection={setMotionDirection}
         />
       ))}
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <button onClick={handleSwipeLeft}>Swipe Left</button>
-        <button onClick={handleSwipeRight}>Swipe Right</button>
+
+      <CardButtons
+        motionDirection={motionDirection}
+        handleSwipeLeft={handleSwipeLeft}
+        handleSwipeRight={handleSwipeRight}
+      />
+
+      <div className="card-hints">
+        <i className="bi bi-arrow-left-square"></i><p>Nope</p>
+        <p>Like </p> <i className="bi bi-arrow-right-square"></i>
       </div>
-      <p style={{ textAlign: "center" }}>
-        Last swipe direction: {motionDirection}
-      </p>
     </div>
   )
 }

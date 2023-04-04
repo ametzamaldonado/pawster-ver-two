@@ -1,0 +1,46 @@
+.container-Navbar {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(228,0,113);
+    /* background: linear-gradient(90deg, rgba(228,0,113,1) 0%, rgba(231,47,105,1) 35%, rgba(234,95,93,1) 100%);  */
+    /* Tinder gradient */
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+}
+
+.profile_img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border:1px solid white;
+}
+
+.navBar-button i {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid white;
+    background-color: inherit;
+}
+
+.bi-gear,
+.bi-caret-left {
+    color: white;
+}
+
+/* .profile-hiddenOptions{
+    visibility: hidden;
+    display: none;
+} */
+
+/* @media only screen and (max-width: 541px) {
+    .profile-hiddenOptions{
+      visibility: inherit;
+      display: inherit;
+    }
+    
+} */
