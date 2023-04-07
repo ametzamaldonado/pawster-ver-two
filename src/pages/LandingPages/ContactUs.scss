@@ -1,0 +1,58 @@
+@mixin mobile {
+    @media screen and (max-width: 480px) {
+      @content;
+    }
+  }
+  @mixin tablet {
+    @media screen and (max-width: 990px) {
+      @content;
+    }
+  }
+  @mixin laptop {
+    @media screen and (max-width: 1200px) {
+      @content;
+    }
+}
+
+.contact-us-container {
+  padding: 100px 300px;
+  justify-content: center;
+
+  @include tablet{
+    padding: 100px;
+  }
+
+  h1, .form-button {
+    color: #f03547;
+    text-align: center;
+  }
+
+  .form-button {       
+        background-color: transparent;
+        text-align: center;
+        color: #f03547;
+        font-size: 1em;
+ 
+        button {
+            width: 100px;
+            height: 30px;
+            margin: 2%;
+            border: 1px solid #f03547;
+
+        }
+    }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    input {
+      padding: 5px;
+    }
+
+    textarea {
+      resize: none;
+    }
+  }
+}

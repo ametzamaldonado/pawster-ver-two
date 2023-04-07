@@ -7,13 +7,15 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { updateProfile } from "firebase/auth";
 
+import logo from "../../img/white-red.png";
+
 const Register = () => {
-  const { signup } = useAuth();
+  const { signup, setUserType, userType } = useAuth();
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmitUser = async (e) => {
     setLoading(true);
     e.preventDefault();
 
@@ -33,7 +35,7 @@ const Register = () => {
         const date = new Date().getTime();
         const storageRef = ref(storage, `${displayName + date}`);
 
-        console.log(response, response.user)
+        console.log(response, response.user);
 
         await uploadBytesResumable(storageRef, file).then(() => {
           getDownloadURL(storageRef).then(async (downloadURL) => {
@@ -49,36 +51,82 @@ const Register = () => {
                 displayName,
                 email,
                 photoURL: downloadURL,
+                typeOfUser: userType,
               });
 
-              //create empty user chats on firestore
-              await setDoc(doc(db, "userChats", response.user.uid), {});
-              // create empty matches on firestore
-              await setDoc(doc(db, "petMatches", response.user.uid), {});
+              await setUserTypeDocs(userType, response)
+
               navigate("/");
-              
             } catch (err) {
               console.log(err);
               setErr(err);
               setLoading(false);
-              return 
+              return;
             }
           });
         });
-      } catch (err) { // db catch 
+      } catch (err) {
+        // db catch
         setErr("Failed to create an account because: " + err);
         setLoading(false);
       }
     }
   };
 
+  const setUserTypeDocs = async (type, res) => {
+    try {
+      if(type === 'user') {
+         //create empty user chats on firestore
+         await setDoc(doc(db, "userChats", res.user.uid), {});
+         // create empty matches on firestore
+         await setDoc(doc(db, "petMatches", res.user.uid), {});
+
+      } else {
+        //create empty shelter chats on firestore
+        await setDoc(doc(db, "shelterChats", res.user.uid), {});
+        // create empty matches on firestore
+        await setDoc(doc(db, "userMatches", res.user.uid), {});
+        await setDoc(doc(db, "petsUploaded", res.user.uid), {});
+      }
+    } catch (err) {
+        console.log(err);
+        setErr(err);
+        setLoading(false);
+        return;
+    }
+      
+  }
+  
   return (
     <div className="wholePage-container">
       <div className="formContainer">
         <div className="formWrapper">
-          <span className="logo">Lama Chat</span>
+          <span className="logo">
+            <img src={logo} alt="logo" />
+          </span>
           <span className="title">Register</span>
-          <form onSubmit={handleSubmit}>
+          <div className="radio-selection">
+            <label>
+              <input
+                type="radio"
+                value="user"
+                checked={userType !== "shelter"}
+                onChange={(e) => setUserType(e.target.value)}
+                required="required"
+              />
+              {' '}User
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="shelter"
+                checked={userType === "shelter"}
+                onChange={(e) => setUserType(e.target.value)}
+              />
+              {' '}Shelter
+            </label>
+          </div>
+          <form onSubmit={handleSubmitUser }>
             <label>Display Name</label>
             <input required type="text" placeholder="display name.." />
             <label>Email</label>
@@ -88,9 +136,10 @@ const Register = () => {
             <label>Password Confirmation</label>
             <input required type="password" placeholder="password.." />
 
-            <input required style={{ display: "none" }} type="file" id="file" />
+            <input required style={{ display: "none" }} type="file" id="file" accept=".jpg, .jpeg, .png" />
             <label htmlFor="file">
               <img src={Add} alt="" />
+              <span className="preview"></span>
               <span>Add an avatar</span>
             </label>
             <button type="submit">Sign up</button>

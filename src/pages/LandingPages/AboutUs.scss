@@ -1,0 +1,50 @@
+@mixin mobile {
+    @media screen and (max-width: 480px) {
+      @content;
+    }
+  }
+  @mixin tablet {
+    @media screen and (max-width: 990px) {
+      @content;
+    }
+  }
+  @mixin laptop {
+    @media screen and (max-width: 1200px) {
+      @content;
+    }
+}
+
+.about-us-section {
+    margin-top: 100px;
+}
+
+.about-us-container {
+    background-color:rgba($color: #f03547, $alpha: .9);
+    padding: 80px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    margin: 0 250px;
+
+    @include tablet{
+        padding: 50px;
+        margin: 0 50px;
+    }
+
+    .about-us-title {
+        color: white;
+        text-align: center;
+        font-size: 40px;
+        font-weight: 600;
+      }
+      .about-us-text {
+        margin-top: 4px;
+        color: white;
+        font-size: 18px;
+        font-weight: 300;
+
+
+        .paragraph {
+            padding-top: 20px;
+        }
+        
+      }
+}

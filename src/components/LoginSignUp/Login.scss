@@ -1,4 +1,4 @@
-$my-gradient: linear-gradient(90deg, rgba(228,0,113,1) 0%, rgba(231,47,105,1) 35%, rgba(234,95,93,1) 100%);
+$my-gradient: linear-gradient(90deg, rgba(240,53,71, 1) 0%, rgba(231,47,105,1) 35%, rgba(234,95,93,1) 100%);
 
 
 .formContainer {
@@ -18,10 +18,28 @@ $my-gradient: linear-gradient(90deg, rgba(228,0,113,1) 0%, rgba(231,47,105,1) 35
       gap: 10px;
       align-items: center;
   
+      .radio-selection{
+        display: flex;
+        
+        label {
+          padding: 0 20px;
+          align-items: center;
+          color: #f03547;
+          font-size: 12px;
+          cursor: pointer;
+        }
+      }
+
+
       .logo {
         color: #5d5b8d;
         font-weight: bold;
-        font-size: 24px;
+        text-align: center;
+        // font-size: 24px;
+        img {
+          width: 50%;
+        }
+        
       }
   
       .title {
@@ -35,10 +53,10 @@ $my-gradient: linear-gradient(90deg, rgba(228,0,113,1) 0%, rgba(231,47,105,1) 35
         gap: 15px;
   
         input {
-          padding: 15px;
+          padding: 5px;
           border: none;
           width: 350px;
-          border-bottom: 1px solid #a7bcff;
+          border-bottom: 1px solid #f03547;
 
         //   &::placeholder { // doesn't work!
         //     color: rgb(175, 175, 175);
@@ -46,7 +64,7 @@ $my-gradient: linear-gradient(90deg, rgba(228,0,113,1) 0%, rgba(231,47,105,1) 35
         }
   
         button {
-          background-color: #7b96ec;
+          background-color: #f03547;
           color: white;
           padding: 10px;
           font-weight: bold;
@@ -58,7 +76,7 @@ $my-gradient: linear-gradient(90deg, rgba(228,0,113,1) 0%, rgba(231,47,105,1) 35
           display: flex;
           align-items: center;
           gap: 10px;
-          color: #8da4f1;
+          color: #f03547;
           font-size: 12px;
           cursor: pointer;
   

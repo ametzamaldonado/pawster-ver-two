@@ -1,0 +1,15 @@
+.footer {
+    position: relative;
+    height: 250px;
+    
+    color: rgba($color: white, $alpha: .5);
+    background-color: #f03547;
+    text-align: center;
+    
+    .content{
+        padding-top: 125px;
+        // position: absolute;
+        // bottom: 0;
+    // right: 0;
+    }
+}

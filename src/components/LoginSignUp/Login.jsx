@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import "./Login.scss"
+import "./Login.scss";
+import logo from "../../img/white-red.png";
 
 const Login = () => {
-  const { login } = useAuth()
-  const [ err, setError] = useState(false);
+  const { login } = useAuth();
+  const [err, setError] = useState(false);
   const navigate = useNavigate();
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,40 +18,47 @@ const Login = () => {
 
     try {
       await login(email, password);
-      navigate("/")
+      navigate("/");
     } catch (error) {
-        const errorCode = error.code;
-        if (errorCode === 'auth/wrong-password') {
-            setError('Wrong password. Please try again');
-        } else if (errorCode === 'auth/user-not-found') {
-            setError(`Can't find email: ${email} in our database. Please make sure you are using the correct email.`);
-        } else {
-            setError("Failed to log in");
-        }
+      const errorCode = error.code;
+      if (errorCode === "auth/wrong-password") {
+        setError("Wrong password. Please try again");
+      } else if (errorCode === "auth/user-not-found") {
+        setError(
+          `Can't find email: ${email} in our database. Please make sure you are using the correct email.`
+        );
+      } else {
+        setError("Failed to log in");
+      }
     }
-
   };
   return (
     <div className="wholePage-container">
-        <div className="formContainer">
-      <div className="formWrapper">
-        <span className="logo">Lama Chat</span>
-        <span className="title">Login</span>
-        <form onSubmit={handleSubmit}>
+      <div className="formContainer">
+        <div className="formWrapper">
+          <span className="logo">
+            <img src={logo} alt="logo" />
+          </span>
+          <span className="title">Login</span>
+          <form onSubmit={handleSubmit}>
             <label>Email</label>
-          <input type="email" placeholder="email"/> {/* placeholder doesn't show up */}
-          <label>Password</label>
-         <input type="password" placeholder="password.." />
-          <button>Sign in</button>
-          {err && <span>Something went wrong - {err}</span>}
-        </form>
-        <p>You don't have an account? 
-            <Link to="/register">{' '}<button className='no_buttonStyling'>Register</button></Link>
-        </p>
+            <input type="email" placeholder="email" />{" "}
+            {/* placeholder doesn't show up */}
+            <label>Password</label>
+            <input type="password" placeholder="password.." />
+            <button>Sign in</button>
+            {err && <span>Something went wrong - {err}</span>}
+          </form>
+          <p>
+            You don't have an account?
+            <Link to="/register">
+              {" "}
+              <button className="no_buttonStyling">Register</button>
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
-    </div>
-    
   );
 };
 
