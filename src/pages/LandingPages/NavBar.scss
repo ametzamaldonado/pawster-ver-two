@@ -1,0 +1,62 @@
+@mixin mobile {
+    @media screen and (max-width: 480px) {
+      @content;
+    }
+  }
+  @mixin tablet {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+  }
+  @mixin laptop {
+    @media screen and (max-width: 1200px) {
+      @content;
+    }
+  }
+
+.landingPage-nav {
+    width: 100vw;
+    justify-content: space-between;
+    position: fixed;
+    backdrop-filter: blur(10px);
+    z-index: 2;
+  
+    @include tablet {
+      position: relative;
+      backdrop-filter: blur(0px);
+    }
+  
+    .container {
+      padding: 0;
+      justify-content: space-between;
+  
+      @include tablet {
+        padding: 2%;
+      }
+    }
+  
+    img {
+      height: 100px;
+      object-fit: cover;
+  
+      @include tablet {
+        height: 60px;
+        width: auto;
+      }
+    }
+  
+    // NavBar Collapse Icon CSS !
+    .navbar-toggler-icon {
+      color: white !important;
+    }
+  
+    .navbar-collapse {
+      flex-grow: 0;
+      text-align: center;
+    }
+  
+    h4 {
+      color: #f03547;
+    }
+  }
+  

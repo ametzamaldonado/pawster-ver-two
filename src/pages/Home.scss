@@ -1,0 +1,18 @@
+@mixin mobile {
+    @media screen and (max-width: 849px) {
+      @content;
+    }
+  }
+  @mixin tablet {
+    @media screen and (max-width: 850px) {
+      @content;
+    }
+  }
+  @mixin laptop {
+    @media screen and (max-width: 1200px) {
+      @content;
+    }
+}
+
+// User Pages View
+

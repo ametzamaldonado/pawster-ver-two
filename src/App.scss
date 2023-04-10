@@ -27,7 +27,7 @@ body {
   grid-template-columns: 1fr 3.5fr;
   height: 100vh;
 
-  @include mobile {
+  @include mobile; @include tablet {
     justify-content: center;
     grid-template-columns: 1fr;
     grid-template-areas: 
@@ -38,7 +38,7 @@ body {
 
 .left-container {
   grid-area: a;
-  width: 375px ;
+  min-width: 375px ;
 }
 
 .right-container {

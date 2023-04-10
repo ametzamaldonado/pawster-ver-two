@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Add from "../../img/add-image-64.png";
+import Add from "../../img/add-image-64.png"
+import Unknown from "../../img/unknown_person.jpeg"
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { db, storage } from "../../firebase/config";
@@ -23,7 +24,7 @@ const Register = () => {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const passwordConfirmation = e.target[3].value;
-    const file = e.target[4].files[0];
+    const file = e.target[4].files[0] || Unknown;
 
     if (password !== passwordConfirmation) {
       return setErr("Passwords do not match");
@@ -54,7 +55,7 @@ const Register = () => {
                 typeOfUser: userType,
               });
 
-              await setUserTypeDocs(userType, response)
+              // await setUserTypeDocs(userType, response)
 
               navigate("/");
             } catch (err) {
@@ -73,36 +74,38 @@ const Register = () => {
     }
   };
 
-  const setUserTypeDocs = async (type, res) => {
-    try {
-      if(type === 'user') {
-         //create empty user chats on firestore
-         await setDoc(doc(db, "userChats", res.user.uid), {});
-         // create empty matches on firestore
-         await setDoc(doc(db, "petMatches", res.user.uid), {});
+  // const setUserTypeDocs = async (type, res) => {
+  //   try {
+  //     if(type === 'user') {
+  //        //create empty user chats on firestore
+  //        await setDoc(doc(db, "userChats", res.user.uid), {});
+  //        // create empty matches on firestore
+  //        await setDoc(doc(db, "petMatches", res.user.uid), {});
 
-      } else {
-        //create empty shelter chats on firestore
-        await setDoc(doc(db, "shelterChats", res.user.uid), {});
-        // create empty matches on firestore
-        await setDoc(doc(db, "userMatches", res.user.uid), {});
-        await setDoc(doc(db, "petsUploaded", res.user.uid), {});
-      }
-    } catch (err) {
-        console.log(err);
-        setErr(err);
-        setLoading(false);
-        return;
-    }
+  //     } else {
+  //       //create empty shelter chats on firestore
+  //       await setDoc(doc(db, "shelterChats", res.user.uid), {});
+  //       // create empty matches on firestore
+  //       await setDoc(doc(db, "userMatches", res.user.uid), {});
+  //       await setDoc(doc(db, "petsUploaded", res.user.uid), {});
+  //     }
+  //   } catch (err) {
+  //       console.log(err);
+  //       setErr(err);
+  //       setLoading(false);
+  //       return;
+  //   }
       
-  }
+  // }
   
   return (
     <div className="wholePage-container">
       <div className="formContainer">
         <div className="formWrapper">
           <span className="logo">
-            <img src={logo} alt="logo" />
+          <a href="/home">
+              <img src={logo} alt="logo" />
+            </a>
           </span>
           <span className="title">Register</span>
           <div className="radio-selection">

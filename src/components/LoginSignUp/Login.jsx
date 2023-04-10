@@ -37,7 +37,9 @@ const Login = () => {
       <div className="formContainer">
         <div className="formWrapper">
           <span className="logo">
-            <img src={logo} alt="logo" />
+            <a href="/home">
+              <img src={logo} alt="logo" />
+            </a>
           </span>
           <span className="title">Login</span>
           <form onSubmit={handleSubmit}>

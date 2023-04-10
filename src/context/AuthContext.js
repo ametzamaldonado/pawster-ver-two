@@ -18,7 +18,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
-  const [userType, setUserType] = useState("user");
+  const [userType, setUserType] = useState('');
   const [loading, setLoading] = useState(true);
 
   
@@ -44,8 +44,8 @@ export function AuthProvider({ children }) {
   }
 
   const findUserType = async (id) => {
-    const museums = query(collection(db, 'users'), where('uid', '==', id));
-    const querySnapshot = await getDocs(museums);
+    const userInfo = query(collection(db, 'users'), where('uid', '==', id));
+    const querySnapshot = await getDocs(userInfo);
     querySnapshot.forEach((doc) => {
         const type = doc.data().typeOfUser;
         setUserType(type)

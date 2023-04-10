@@ -1,0 +1,65 @@
+@mixin mobile {
+    @media screen and (max-width: 480px) {
+      @content;
+    }
+  }
+  @mixin tablet {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+  }
+  @mixin laptop {
+    @media screen and (max-width: 1200px) {
+      @content;
+    }
+  }
+  
+
+.organization-section-container {
+  background-color: rgba($color: #f03547, $alpha: 0.7);
+  width: 100%;
+
+  .section-info {
+    padding: 100px 90px 40px;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+
+    @include mobile {
+        padding: 40px;
+    }
+
+    .section-min {
+      width: 75%;
+      margin: 0 auto;
+
+      .section-title {
+        padding: 20px;
+      }
+
+      .section-text {
+        padding-bottom: 50px;
+        border-bottom: 4px solid white;
+      }
+    }
+  }
+
+  .card-section {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    column-gap: 20px;
+    row-gap: 20px;
+    padding: 0 10px 40px;
+    justify-content: center;
+
+    .card {
+      width: 500px;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 25px rgba($color: black, $alpha: 0.4);
+    }
+  }
+}
