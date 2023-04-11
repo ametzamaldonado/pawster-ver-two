@@ -39,6 +39,11 @@ body {
 .left-container {
   grid-area: a;
   min-width: 375px ;
+
+  @include tablet {
+    width: 100%;
+    // padding: 0 20px;
+  }
 }
 
 .right-container {
@@ -70,9 +75,10 @@ a {
   }
 }
 
-/* a:hover {
-
-} */
+// For input styling:
+input {
+  font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+}
 
 /* For IMG tags */
 .round_styling {

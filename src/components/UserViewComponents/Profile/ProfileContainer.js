@@ -9,7 +9,7 @@ import { useAuth } from '../../../context/AuthContext';
 
 function ProfileContainer() {
     const { currentUser } = useAuth(); 
-    const [ userImages, setUserImages ] = useState();
+    const [ userImages, setUserImages ] = useState([]);
 
     let userId = currentUser.uid;
     const photosPhotedRef = doc(db, "users", userId);
@@ -65,7 +65,6 @@ function ProfileContainer() {
     return (
         <div className='setting-profile-container'>
             <div className='default-column'>
-                ProfileContainer
                 <div className="gallery ">
                     {
                         userImages && <ImagesDisplay images={userImages} handleSubmitPhotos={handleSubmitPhotos} removePhotoFromUser={removePhotoFromUser}/>

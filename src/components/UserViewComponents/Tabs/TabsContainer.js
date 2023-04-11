@@ -1,7 +1,6 @@
 import React from 'react';
 import { Tabs, Tab, Badge } from 'react-bootstrap';
 import { useState } from 'react';
-// import { messages } from '../../../data/data';
 import './TabsContainer.css'
 import MatchesContainer from '../Matches/MatchesContainer';
 import MessageContainer from '../Messages/MessageContainer';
@@ -20,9 +19,9 @@ function TabsContainer() {
             <MatchesContainer />
           </Tab>
           <Tab
-            eventKey="messages">
-           {/*  // title={<span>Messages <Badge bg="secondary">{messages.length}</Badge></span>}>
-            // <MessageContainer /> */}
+            eventKey="messages"
+             title={<span>Messages <Badge bg="secondary">{6}</Badge></span>}>
+            <MessageContainer />
           </Tab>
         </Tabs>
       </div>

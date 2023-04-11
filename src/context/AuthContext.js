@@ -64,10 +64,8 @@ export function AuthProvider({ children }) {
         // User is signed out
         setCurrentUser(null);
       }
-     
       setLoading(false);
     });
-
     return unsubscribeFromAuthStateChanged;
   }, []);
 

@@ -2,7 +2,17 @@
 import React from "react";
 import { motion, useTransform } from "framer-motion";
 
-export default function Card({ image, color, motionValue, animControls, motionDirection, setMotionDirection }) {
+export default function Card({ 
+    image, 
+    color, 
+    motionValue, 
+    animControls, 
+    motionDirection, 
+    setMotionDirection, 
+    currentIndex, 
+    setCurrentIndex,
+    resetValues 
+}) {
     // Some styling for the card
     const style = {
         backgroundImage: `url(${image})`,
@@ -30,17 +40,32 @@ export default function Card({ image, color, motionValue, animControls, motionDi
         [0, 1, 1, 1, 0]
     );
 
+    
+
     const handleDragEnd = (event, info) => {
         if (Math.abs(info.offset.x) <= 1) { // if "left"
             animControls.start({ x: 0 });
         } else { // if "right"
             console.log(info.offset.x < 0)
             setMotionDirection(info.offset.x < 0 ? "left" : "right");
-            animControls.start({ x: info.offset.x < 0 ? -200 : 200 });
+            animControls.start({
+                x: info.offset.x < 0 ? -200 : 200,
+                transition: { 
+                    duration: 0.5,
+                    onComplete: () => {
+                        animControls.start({ x: 0 });
+                        setCurrentIndex(currentIndex + 1);
+                        resetValues();
+                    }
+                }
+            });
         }
+        // resetValues()
+        
     };
 
-    console.log(motionDirection)
+    console.log(motionDirection, currentIndex)
+
 
     return (
         <div className="card-component" >
@@ -54,6 +79,7 @@ export default function Card({ image, color, motionValue, animControls, motionDi
                     opacity: opacityValue,
                 }}
                 onDragEnd={handleDragEnd}
+                animate={animControls}
             />
         </div>
     );

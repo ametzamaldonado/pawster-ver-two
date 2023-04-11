@@ -1,7 +1,7 @@
 /* Nav Component Styling CSS */
 .nav-tabs {
   border: none;
-  padding: 2px;
+  padding: 2px 0px;
 }
 
 .nav-link,
@@ -18,13 +18,9 @@
   border-left-style: none;
   border-bottom: 2px solid;
   background-color: inherit;
+  
 }
+
 /* --------------------------- */
 
 
-@media only screen and (max-width: 541px) {
-  /* .profile-hiddenOptions {
-    visibility: inherit;
-    display: inherit;
-  } */
-}

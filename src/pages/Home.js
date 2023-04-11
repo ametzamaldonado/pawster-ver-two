@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <>
-      {userType === "user" ? (
+      {userType !== "user" ? (
         <>
           <div className="left-container">
             <NavBarContainer />
@@ -28,6 +28,7 @@ function Home() {
       ) : (
         <div className="wholePage-container">
           <ShelterHome />
+          
         </div>
       )}
     </>
