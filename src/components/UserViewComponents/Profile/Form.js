@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ContactInfo from "./FormComponents/ContactInfo";
 import "./Form.scss";
 import IncomeInfo from "./FormComponents/IncomeInfo";
 import { db } from "../../../firebase/config";
 import { useAuth } from "../../../context/AuthContext";
-import { updateDoc, doc } from "firebase/firestore";
+import { updateDoc, doc, getDoc, query, collection } from "firebase/firestore";
 import { updateProfile } from "firebase/auth";
 
 function Form() {
@@ -16,8 +16,8 @@ function Form() {
     phoneNumber: "",
     annualIncome: "",
     rentMortage: "",
-    householdSize: null,
-    numberOfPrevPets: null,
+    householdSize: '',
+    numberOfPrevPets: '',
     residenceType: "",
     address: {
         street_address: '',
@@ -27,6 +27,8 @@ function Form() {
         state: ''
     }
   });
+
+  const userRef = doc(db, "users", currentUser.uid);
 
   const handleTextChange = (event) => { // works!
     setUserInputData({
@@ -52,36 +54,51 @@ function Form() {
 //   Not sure if handle Submit was able to submit form inputs
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     console.log(userInputData)
-    // try {
-    //   //Update profile - aka: user PH#
-    //   await updateProfile(currentUser, {
-    //     phoneNumber: userInputData["phoneNumber"],
-    //   });
+    try {
+      //Update profile - aka: user PH#
+      await updateProfile(userRef, {
+        phoneNumber: userInputData["phoneNumber"],
+      });
 
-    //   //create user on firestore
-    //   await updateDoc(doc(db, "users", currentUser.uid), {
-    //     firstName: userInputData["firstName"],
-    //     lastName: userInputData["lastName"],
-    //     age: userInputData["age"],
-    //     phoneNumber: userInputData["phoneNumber"],
-    //     annualIncome: userInputData["annualIncome"],
-    //     rentMortage: userInputData["rentMortage"],
-    //     householdSize: userInputData["householdSize"],
-    //     numberOfPrevPets: userInputData["numberOfPrevPets"],
-    //     residenceType: userInputData["residenceType"],
-    //     address: userInputData["address"]
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    e.reset()
+      //create user on firestore
+      await updateDoc(userRef, {
+        firstName: userInputData["firstName"],
+        lastName: userInputData["lastName"],
+        age: userInputData["age"],
+        annualIncome: userInputData["annualIncome"],
+        rentMortage: userInputData["rentMortage"],
+        householdSize: userInputData["householdSize"],
+        numberOfPrevPets: userInputData["numberOfPrevPets"],
+        residenceType: userInputData["residenceType"],
+        address: userInputData["address"]
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    // e.reset()
   };
+
+
+  useEffect(() => {
+    async function getData (){
+        const userData = (await getDoc(userRef)).data();
+        if(userData['rentMortage']) {
+            console.log(userData)
+            setUserInputData(userData);
+        }
+    }
+
+    getData()
+}, [])
+
+
 
 
   return (
     <div className="allForms">
-      <form on>
+      <form onSubmit={handleSubmit}>
         <ContactInfo
           userInputData={userInputData}
           handleTextChange={handleTextChange}
@@ -91,7 +108,7 @@ function Form() {
           userInputData={userInputData}
           handleTextChange={handleTextChange}
         />
-        <button type="submit" onSubmit={handleSubmit}>
+        <button type="submit" >
           Submit
         </button>
       </form>

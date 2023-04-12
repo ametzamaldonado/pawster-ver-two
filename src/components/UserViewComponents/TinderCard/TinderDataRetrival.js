@@ -25,31 +25,18 @@ function TinderDataRetrival() {
     let path = `users/${currentUser.uid}/matches`;
     const matches = query(collection(db, path));
     const querySnapshot = await getDocs(matches);
-    console.log(querySnapshot)
-    if (!!querySnapshot.docs) {
-      return;
-    }
     const userMatches = querySnapshot.docs.map((el) => el.data());
-    console.log(userMatches);
-    if (userMatches.length) {
-      let result = petsData;
-      for (let i = 0; i < userMatches.length; i++) {
-        for (let j = 0; j < dataArray.length; j++) {
-          if (dataArray[j].shelterId !== userMatches[i].petId) {
-            result.splice(j, 1);
-          }
-        }
-       
-      }
-      setPetsData(result);
-    }
-
+    // console.log(userMatches); // work! 
+    
+    let result = await dataArray.filter((el) => !userMatches.some((match) => match.uid === el.uid));
+    setPetsData(result);
   };
 
-  const addPetMatch = async (petId) => {
-    let path = `users/${currentUser.uid}/matches`;
+  const addPetMatch = async (petId, petData) => {
+    const userRef = doc(db, `users/${currentUser.uid}/matches`, petId);
     try {
-      await setDoc(doc(db, path, petId), {});
+      await setDoc(userRef, petData);
+      console.log(`Added match with ID: ${petId}`);
     } catch (err) {
       console.log(err);
     }
@@ -57,7 +44,7 @@ function TinderDataRetrival() {
 
   useEffect(() => {
     findMatches();
-  }, [petsData, setPetsData]);
+  }, []);
 
   return (
     <>

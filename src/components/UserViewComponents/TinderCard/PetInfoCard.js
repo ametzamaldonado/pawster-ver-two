@@ -3,7 +3,7 @@ import './PetInfoCard.scss'
 
 function PetInfoCard({ card }) {
   const { images, name, age, species, gender, aboutMe, shelterID, location } = card
-  console.log(shelterID)
+  console.log(shelterID,name)
   return (
     <div className='petInfo' > 
       {/* Images */}

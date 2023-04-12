@@ -4,14 +4,19 @@ import { motion, useTransform } from "framer-motion";
 
 export default function Card({ 
     image, 
+    data,
     motionValue, 
     animControls, 
     motionDirection, 
     setMotionDirection, 
     currentIndex, 
     setCurrentIndex,
-    resetValues 
+    resetValues,
+    addPetMatch 
 }) {
+
+    console.log(data, data.uid)
+
     // Some styling for the card
     const style = {
         backgroundImage: `url(${image})`,
@@ -44,7 +49,8 @@ export default function Card({
         if (Math.abs(info.offset.x) <= 1) { // if "left"
             animControls.start({ x: 0 });
         } else { // if "right"
-            console.log(info.offset.x < 0)
+            console.log(info.offset.x < 0);
+            addPetMatch(data.uid, data) ;
             setMotionDirection(info.offset.x < 0 ? "left" : "right");
             animControls.start({
                 x: info.offset.x < 0 ? -200 : 200,
@@ -57,9 +63,7 @@ export default function Card({
                     }
                 }
             });
-        }
-        // resetValues()
-        
+        }  
     };
 
     console.log(motionDirection, currentIndex)

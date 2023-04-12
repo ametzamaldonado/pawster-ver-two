@@ -10,36 +10,31 @@ function MatchesContainer() {
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [noMatches, setNoMatches] = useState(true);
-  const [userDocs, setUserDocs] = useState([]);
+  const [userPetMatches, setUserPetMatches] = useState([]);
 
-  // let path = `users/${currentUser.uid}/matches`;
+  const findUserPetMatches = async () => {
+    let path = `users/${currentUser.uid}/matches`;
+    const matches = query(collection(db, path));
+    const querySnapshot = await getDocs(matches);
+    const userMatches = querySnapshot.docs.map((el) => el.data());
+    if(userMatches){
+      setNoMatches(false)
+      setUserPetMatches(userMatches);
+      console.log(userPetMatches)
+    }
+  };
 
-  // const findMatches = async (id) => {
-  //   const matches = query(collection(db, path));
-  //   const querySnapshot = await getDocs(matches);
 
-  //   const data = 
-  //   querySnapshot.docs.map((el) => el.data());
-  //       if (data) {
-  //         setUserDocs(data);
-  //         setLoading(false);
-  //       } else {
-  //         console.log("No such document!");
-  //         setNoMatches(true)
-  //         setLoading(false);
-  //       }   
-  //   };
-
-  // useEffect(() => {
-  //   findMatches(currentUser.uid);
-  // }, [currentUser]);
+  useEffect(() => {
+    findUserPetMatches();
+  }, []);
 
   return (
     <div className="matches-container">
       {loading && "Loading..."}
       {noMatches && <NoMatches />}
-      {userDocs?.map((el, index) => (
-        <MatchesCard key={index} userName={el.userName} image={el.image} />
+      {userPetMatches?.map((el, index) => (
+        <MatchesCard key={index} userName={el.name} image={el.images[0]} />
       ))}
 
     </div>

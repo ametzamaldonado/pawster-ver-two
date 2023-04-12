@@ -11,7 +11,7 @@ function CardButtons({ motionDirection, handleSwipeLeft, handleSwipeRight, outOf
                     <i className="bi bi-x-lg swipe-icon" id={outOfCards ? 'mute-icon': 'swipe-left'}></i>
                 </button>
 
-                <button className='no_buttonStyling' onClick={handleCardsFlipped}>
+                <button className='no_buttonStyling' onClick={handleCardsFlipped} disabled={outOfCards}>
                 <i class="bi bi-info-lg swipe-icon" id="info-icon" hidden={outOfCards ? true : false }></i>
                 </button>
 

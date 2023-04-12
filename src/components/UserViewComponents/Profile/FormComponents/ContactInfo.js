@@ -32,22 +32,22 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
 
       {/* Date of Birth */}
       <div className="input-wrapper">
-        <label for="age">Date of Birth:</label>
+        <label for="age">Age:</label>
         <input
-          type="date"
-          id="age"
-          name="trip-start"
-          min="1934-01-01"
-          max="2005-01-01"
-          required
-        />
+            id="age"
+            name="age"
+            type="number"
+            value={userInputData.age}
+            onChange={handleTextChange} 
+            required
+          />
       </div>
 
       {/* Phone Number */}
       <div className="input-wrapper">
         <label for="phoneNumber">Phone Number:</label>
         <input
-          type="tel"
+          type="text"
           id="phoneNumber"
           name="phoneNumber"
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"

@@ -38,6 +38,7 @@ function TinderContainer({ petsData, addPetMatch }) {
 
   const handleSwipeRight = () => {
     setMotionDirection("right");
+    addPetMatch(petsData[currentIndex].uid, petsData[currentIndex]);
     motionValue.set(200);
     animControls.start({
       x: 200,
@@ -46,12 +47,12 @@ function TinderContainer({ petsData, addPetMatch }) {
           onComplete: () => {
               setCurrentIndex(currentIndex + 1);
               animControls.start({ x: 0 });
-              resetValues();
+              resetValues(); 
           }
       }
-  })
+    }) 
   };
- 
+  
   const resetValues = () => {
     motionValue.set(0);
     animControls.start({ x: 0 });
@@ -77,6 +78,7 @@ function TinderContainer({ petsData, addPetMatch }) {
           <div className="front-card">
             <Card
           key={currentIndex}
+          data={petsData[currentIndex]}
           image={petsData[currentIndex].images[0]}
           animControls={animControls}
           motionValue={motionValue}
@@ -85,6 +87,7 @@ function TinderContainer({ petsData, addPetMatch }) {
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
           resetValues={resetValues}
+          addPetMatch={addPetMatch}
         />
           </div>
            

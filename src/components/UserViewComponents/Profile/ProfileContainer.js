@@ -67,8 +67,12 @@ function ProfileContainer() {
             <div className='default-column'>
                 <div className="gallery ">
                     {
-                        userImages && <ImagesDisplay images={userImages} handleSubmitPhotos={handleSubmitPhotos} removePhotoFromUser={removePhotoFromUser}/>
-                    }
+                        userImages && 
+                        <ImagesDisplay 
+                            images={userImages} 
+                            handleSubmitPhotos={handleSubmitPhotos} removePhotoFromUser={removePhotoFromUser}
+                        />
+                        }
                 </div>
                 <Form />
 

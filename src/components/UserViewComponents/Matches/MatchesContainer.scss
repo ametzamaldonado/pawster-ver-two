@@ -14,35 +14,15 @@
   }
 }
 
+.tab-content {
+  margin: 0 !important;
+}
+
 .matches-container {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   /* padding: 2px; */
-
-  .matches-img-container {
-    position: relative;
-    display: inline-block;
-    height: 200px;
-    width: 180px;
-    padding: 5px 10px 10px;
-
-    .matches-img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      border-radius: 5%;
-    }
-
-    .bottom-left {
-      display: flex;
-      flex-wrap: wrap;
-      position: absolute;
-      bottom: 10px;
-      color: white;
-      backdrop-filter: blur(1px);
-    }
-  }
 }
 
 .no-matches {
