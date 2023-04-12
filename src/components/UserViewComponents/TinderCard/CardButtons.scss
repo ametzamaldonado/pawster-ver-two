@@ -1,0 +1,41 @@
+/*  ---- Tinder button CSS ---- */
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  
+    i {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.5em;
+      height: 2.5em;
+      border-radius: 50%;
+      background-color: inherit;
+    }
+  
+    .swipe-icon {
+      font-size: 1.5rem;
+    }
+  
+    #mute-icon {
+      color: rgba(37, 37, 37, 0.3);
+      background-color: rgb(235, 230, 230);
+      opacity: .5;
+      cursor:auto;
+    }
+  
+    #swipe-right {
+      color: #6cebc8;
+      border: 2px solid #6cebc8;
+    }
+  
+    #swipe-left {
+      color: #ff5e5f;
+      border: 2px solid #ff5e5f;
+    }
+  
+    #info-icon {
+      border: 2px solid black;
+    }
+  }

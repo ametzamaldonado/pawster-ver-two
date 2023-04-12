@@ -1,0 +1,20 @@
+/*  --------- Botton Card Faded Hints ---------- */
+
+.card-hints {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    i {
+      color: rgba(37, 37, 37, 0.3);
+      font-size: 1.2rem;
+    }
+  
+    p {
+      font-weight: lighter;
+      margin: 0;
+      padding: 0 10px;
+      color: rgba(37, 37, 37, 0.25);  
+    }
+  
+  }

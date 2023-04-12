@@ -4,11 +4,14 @@ import CardButtons from "./CardButtons";
 import Card from './Card';
 import './TinderContainer.scss'
 import NoTinderCards from "./NoTinderCards";
+import BottomCardHints from "./BottomCardHints"
+import PetInfoCard from "./PetInfoCard";
 
-function TinderContainer({ cards }) {
+function TinderContainer({ petsData, addPetMatch }) {
+  console.log(petsData)
   const [currentIndex, setCurrentIndex] = useState(0);
   const [motionDirection, setMotionDirection] = useState(null);
-  
+
   // To move the card as the user drags the cursor
   const motionValue = useMotionValue(0);
 
@@ -46,22 +49,35 @@ function TinderContainer({ cards }) {
               resetValues();
           }
       }
-  });
+  })
   };
  
   const resetValues = () => {
     motionValue.set(0);
     animControls.start({ x: 0 });
   }
+
+  const handleCardsFlipped = () => {
+    let target = document.querySelector(".tinder-card-inner");
+    let frontCard = document.querySelector(".front-card");
+    let backCard = document.querySelector(".back-card");
+    target.classList.toggle("flip");
+    frontCard.classList.toggle("none");
+    backCard.classList.toggle("none");
+    console.log(target)
+};
  
-  console.log(currentIndex)
   return (
-    <div className='tinder-container'>
-        { currentIndex < cards.length ? (
-        <Card
+    <div className='tinder-container' >
+      <div className="tinder-card-inner" >
+
+     
+        { currentIndex < petsData.length ? (
+          <>
+          <div className="front-card">
+            <Card
           key={currentIndex}
-          image={cards[currentIndex].image}
-          color={cards[currentIndex].color}
+          image={petsData[currentIndex].images[0]}
           animControls={animControls}
           motionValue={motionValue}
           motionDirection={motionDirection}
@@ -70,26 +86,31 @@ function TinderContainer({ cards }) {
           setCurrentIndex={setCurrentIndex}
           resetValues={resetValues}
         />
+          </div>
+           
+          <div className="back-card none">
+            <PetInfoCard 
+              card={petsData[currentIndex]}
+            />
+          </div>
+          </>
+       
       ) :
       (
         <NoTinderCards />
       ) } 
     
-
+    </div>
       
       <CardButtons
         motionDirection={motionDirection}
         handleSwipeLeft={handleSwipeLeft}
         handleSwipeRight={handleSwipeRight}
-        outOfCards={currentIndex >= cards.length}
+        outOfCards={currentIndex >= petsData.length}
+        handleCardsFlipped={handleCardsFlipped}
       />
 
-      <div className="card-hints">
-        <i className="bi bi-arrow-left-square"></i><p>Nope</p>
-        
-        
-        <p>Like </p> <i className="bi bi-arrow-right-square"></i>
-      </div>
+      <BottomCardHints />
 
     </div>
   )

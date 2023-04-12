@@ -1,0 +1,70 @@
+.petInfo {
+  background-color: rgba(240, 53, 71, 0.7);
+  background-position: center center;
+  box-shadow: rgb(136, 136, 136) 5px 10px 10px;
+  border-radius: 10px;
+  height: 500px;
+  width: 300px;
+  margin: 0px auto;
+  overflow: scroll;
+  padding: 5px;
+
+    //   Image CSS
+  .petImages-container {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 5px 0;
+    /* padding: 2px; */
+
+    .petImg-div {
+      position: relative;
+      display: inline-block;
+      height: 160px;
+      width: 140px;
+      padding: 5px 10px 10px;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 5%;
+      }
+    }
+  }
+
+    // Name CSS
+    .medium-font {
+        font-weight: 600;
+        font-size: large;
+    }  
+
+    .petInfo-details{
+        text-align: left;
+        padding: 5px;
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            span {
+                font-weight: 500;
+                color:white;
+            }
+            
+          }
+    }
+
+    .about-me {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+
+        span {
+            font-weight: 500;
+            color:white;
+        }
+    }
+}

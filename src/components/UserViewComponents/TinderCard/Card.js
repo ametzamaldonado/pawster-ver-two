@@ -4,7 +4,6 @@ import { motion, useTransform } from "framer-motion";
 
 export default function Card({ 
     image, 
-    color, 
     motionValue, 
     animControls, 
     motionDirection, 
@@ -17,13 +16,12 @@ export default function Card({
     const style = {
         backgroundImage: `url(${image})`,
         backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-        backgroundColor: color,
+        backgroundSize: "cover",
         backgroundPosition: 'center',
         boxShadow: "5px 10px 18px #888888",
         borderRadius: 10,
-        height: 400,
-        width: 250,
+        height: 500,
+        width: 300,
         margin: "0 auto", // Add this line to center the card horizontally
     };
 
