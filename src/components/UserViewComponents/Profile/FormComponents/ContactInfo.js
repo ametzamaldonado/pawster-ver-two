@@ -3,10 +3,23 @@ import React from "react";
 function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
   return (
     <div className="contactInfo-form form-containers">
+      {/* About Me */}
+      <div className="input-wrapper">
+        <label htmlFor="aboutMe">About Me:</label>
+        <textarea
+          id="aboutMe"
+          name="aboutMe"
+          rows={5}
+          placeholder="Tell us a little about you!"
+          value={userInputData.aboutMe}
+          onChange={handleTextChange}
+        />
+      </div>
+
       {/* First & Last Name */}
       <div className="side-by-side">
         <div className="input-wrapper">
-          <label for="firstName">First Name: </label>
+          <label htmlFor="firstName">First Name: </label>
           <input
             id="firstName"
             name="firstName"
@@ -18,7 +31,7 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
         </div>
 
         <div className="input-wrapper">
-          <label for="lastName">Last Name: </label>
+          <label htmlFor="lastName">Last Name: </label>
           <input
             id="lastName"
             name="lastName"
@@ -32,7 +45,7 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
 
       {/* Date of Birth */}
       <div className="input-wrapper">
-        <label for="age">Age:</label>
+        <label htmlFor="age">Age:</label>
         <input
             id="age"
             name="age"
@@ -45,13 +58,15 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
 
       {/* Phone Number */}
       <div className="input-wrapper">
-        <label for="phoneNumber">Phone Number:</label>
+        <label htmlFor="phone_number">Phone Number:</label>
         <input
-          type="text"
-          id="phoneNumber"
-          name="phoneNumber"
+          type="tel"
+          id="phone_number"
+          name="phone_number"
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           placeholder="123-456-7980"
+          value={userInputData.phone_number}
+          onChange={handleTextChange}
           required
         />
       </div>
@@ -64,7 +79,7 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
             type="text"
             id="street_address"
             name="street_address"
-            autocomplete="street_address"
+            autoComplete="street_address"
             placeholder="Street Address"
             value={userInputData['address'].street_address}
             onChange={handleAddressChange}
@@ -75,7 +90,7 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
             type="text"
             id="street_address_two"
             name="street_address_two"
-            autocomplete="street_address"
+            autoComplete="street_address"
             placeholder="Street Address line 2 (optional)"
             value={userInputData['address'].street_address_two}
             onChange={handleAddressChange}
@@ -86,10 +101,9 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
           <div className="input-wrapper">
             <label>Zipcode: </label>
             <input
-              class="postal_code"
               id="postal_code"
               name="postal_code"
-              autocomplete="postal_code"
+              autoComplete="postal_code"
               value={userInputData['address'].postal_code}
               onChange={handleAddressChange}
               required
@@ -103,7 +117,7 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
               type="text"
               id="city"
               name="city"
-              autocomplete="address-level2"
+              autoComplete="address-level2"
               value={userInputData['address'].city}
               onChange={handleAddressChange}
             />

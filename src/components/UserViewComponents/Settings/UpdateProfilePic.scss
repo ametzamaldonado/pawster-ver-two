@@ -1,0 +1,68 @@
+.wrapper {
+  width: 100%;
+  height: auto;
+  padding: 20px 20px 20px 20px;
+  border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+
+  .profile {
+    margin-top: 2.2em;
+    position: relative;
+
+    .camera {
+      position: absolute;
+      right: 9.5em;
+      bottom: 11em;
+      border-radius: 100%;
+
+      // border: 1px solid black;
+      background-color: rgba(240, 53, 71, 0.7);
+      i {
+        width: 100%;
+        padding: 5px;
+        height: auto;
+        font-size: 16px;
+        line-height: 20px;
+        text-align: center;
+      }
+    }
+    .thumbnail {
+      width: 124px;
+      height: 124px;
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1.5em;
+      border-radius: 100%;
+      box-shadow: 0 8px 40px rgba(#000000, 0.2);
+    }
+    .name {
+      color: #2d354a;
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+    }
+    span {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgb(240, 53, 71);
+    }
+    .title {
+      color: #7c8097;
+      font-size: 0.75em;
+      font-weight: 300;
+      text-align: center;
+      padding-top: 0.5em;
+      padding-bottom: 0.7em;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .description {
+      color: #080911;
+      font-size: 14px;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 1.3em;
+    }
+  }
+}

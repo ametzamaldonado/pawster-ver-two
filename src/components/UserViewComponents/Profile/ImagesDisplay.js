@@ -5,7 +5,7 @@ function ImagesDisplay({ images, handleSubmitPhotos, removePhotoFromUser}) {
   const totalImgCountNeeded = 6;
 
   for (let i = 0; i < totalImgCountNeeded; i++) {
-    if (images[i]) {
+    if (!!images && images[i]) {
       elements.push(
         <div className="gallery-container" key={`div_${i}`}>
           <img
@@ -18,7 +18,7 @@ function ImagesDisplay({ images, handleSubmitPhotos, removePhotoFromUser}) {
 
           {/* Remove photo button */}
           <button className="no_buttonStyling bottom-right" onClick={() => removePhotoFromUser(images[i])}>
-              <i class="bi bi-x-circle"></i>
+              <i className="bi bi-x-circle"></i>
             </button>
 
         </div>
@@ -40,7 +40,7 @@ function ImagesDisplay({ images, handleSubmitPhotos, removePhotoFromUser}) {
                 onInput={(e) => handleSubmitPhotos(e.target.files[0])}
               />
               <label htmlFor="file">
-                <i class="bi bi-plus-square"></i>
+                <i className="bi bi-plus-square"></i>
               </label>
             </button>
           </div>

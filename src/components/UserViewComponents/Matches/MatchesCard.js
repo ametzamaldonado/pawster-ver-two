@@ -2,8 +2,6 @@ import React from 'react';
 import "./MatchesCard.scss"
 
 function MatchesCard({ userName, image }) {
-
-    console.log(userName, image)
     return (
         <>
             <div className='matches-img-container' onClick={() => console.log('here at match div')}>

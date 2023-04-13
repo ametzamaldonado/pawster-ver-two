@@ -44,10 +44,10 @@ const Login = () => {
           <span className="title">Login</span>
           <form onSubmit={handleSubmit}>
             <label>Email</label>
-            <input type="email" placeholder="email" />{" "}
-            {/* placeholder doesn't show up */}
+            <input type="email" placeholder="Email" />{" "}
+
             <label>Password</label>
-            <input type="password" placeholder="password.." />
+            <input type="password" placeholder="Password.." />
             <button>Sign in</button>
             {err && <span>Something went wrong - {err}</span>}
           </form>

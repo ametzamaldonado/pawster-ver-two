@@ -4,16 +4,16 @@ import "./Form.scss";
 import IncomeInfo from "./FormComponents/IncomeInfo";
 import { db } from "../../../firebase/config";
 import { useAuth } from "../../../context/AuthContext";
-import { updateDoc, doc, getDoc, query, collection } from "firebase/firestore";
-import { updateProfile } from "firebase/auth";
+import { updateDoc, doc, getDoc } from "firebase/firestore";
 
 function Form() {
   const { currentUser } = useAuth();
   const [userInputData, setUserInputData] = useState({
+    aboutMe: '',
     firstName: "",
     lastName: "",
-    age: null,
-    phoneNumber: "",
+    age: '',
+    phone_number: "",
     annualIncome: "",
     rentMortage: "",
     householdSize: '',
@@ -57,13 +57,9 @@ function Form() {
     
     console.log(userInputData)
     try {
-      //Update profile - aka: user PH#
-      await updateProfile(userRef, {
-        phoneNumber: userInputData["phoneNumber"],
-      });
-
       //create user on firestore
       await updateDoc(userRef, {
+        aboutMe:userInputData["aboutMe"],
         firstName: userInputData["firstName"],
         lastName: userInputData["lastName"],
         age: userInputData["age"],
@@ -72,12 +68,12 @@ function Form() {
         householdSize: userInputData["householdSize"],
         numberOfPrevPets: userInputData["numberOfPrevPets"],
         residenceType: userInputData["residenceType"],
-        address: userInputData["address"]
+        address: userInputData["address"],
+        phone_number: userInputData['phone_number'],
       });
     } catch (err) {
       console.log(err);
     }
-    // e.reset()
   };
 
 
@@ -99,6 +95,7 @@ function Form() {
   return (
     <div className="allForms">
       <form onSubmit={handleSubmit}>
+   
         <ContactInfo
           userInputData={userInputData}
           handleTextChange={handleTextChange}

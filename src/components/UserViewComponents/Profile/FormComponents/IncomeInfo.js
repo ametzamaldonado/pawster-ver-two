@@ -6,7 +6,7 @@ function IncomeInfo({ userInputData, handleTextChange }) {
 
       {/* Residence Type */}
       <div className="input-wrapper">
-          <label for="residenceType">Residence Type: </label>
+          <label htmlFor="residenceType">Residence Type: </label>
           <select 
           name="residenceType"
           id="residenceType" 
@@ -24,7 +24,7 @@ function IncomeInfo({ userInputData, handleTextChange }) {
       {/* Annual Income */}
       <div className="side-by-side">
         <div className="input-wrapper">
-          <label for="annualIncome">Annual Income: </label>
+          <label htmlFor="annualIncome">Annual Income: </label>
           <input
             id="annualIncome"
             name="annualIncome"
@@ -37,7 +37,7 @@ function IncomeInfo({ userInputData, handleTextChange }) {
 
       {/* Rent / Mortgage */}
         <div className="input-wrapper">
-          <label for="rentMortage">Rent/Mortgage: </label>
+          <label htmlFor="rentMortage">Rent/Mortgage: </label>
           <input
             id="rentMortage"
             name="rentMortage"
@@ -53,7 +53,7 @@ function IncomeInfo({ userInputData, handleTextChange }) {
       <div className="side-by-side">
 
       <div className="input-wrapper">
-          <label for="householdSize">House Hold Size: </label>
+          <label htmlFor="householdSize">House Hold Size: </label>
           <input
             id="householdSize"
             name="householdSize"
@@ -68,7 +68,7 @@ function IncomeInfo({ userInputData, handleTextChange }) {
 
       {/* Pets in the house */}
         <div className="input-wrapper">
-          <label for="numberOfPrevPets">Pets in the House: </label>
+          <label htmlFor="numberOfPrevPets">Pets in the House: </label>
           <input
             id="numberOfPrevPets"
             name="numberOfPrevPets"
@@ -85,7 +85,7 @@ function IncomeInfo({ userInputData, handleTextChange }) {
       
 
     
-<span id="input-hint-files">All parts of the form are required in order for your profile to be considered complete. Please take the time to add the below information. </span>            
+<span id="input-hint-files">All parts of the for are required in order for your profile to be considered complete. Please take the time to add the below information. </span>            
 
     </div>
   );

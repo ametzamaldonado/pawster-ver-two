@@ -4,7 +4,6 @@ import { useAuth } from '../../../context/AuthContext';
 
 function NavScrollExample() {
     const { currentUser } = useAuth();
-    console.log(currentUser)
 
     let currentPath = window.location.pathname
     return (

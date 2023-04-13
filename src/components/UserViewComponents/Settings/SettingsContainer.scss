@@ -1,0 +1,20 @@
+.setting-profile-container {
+    margin: 25px;
+    height: 100vh;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    overflow: scroll;
+}
+
+button {
+    color: rgba(240,53,71, 1);
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid rgba(240,53,71, 1);
+    background-color: transparent;
+}
+
+// Modal CSS
+
+.modal-content {
+    top: calc(90vh - 60vh) !important;
+}

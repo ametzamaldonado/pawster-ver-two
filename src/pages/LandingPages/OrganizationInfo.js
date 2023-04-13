@@ -5,7 +5,7 @@ function OrganizationInfo() {
   const cardInfo = [
     {
       title: "Pawster Mentors",
-      text: "Experience shows that when a pet arrives in a new home, a transition phase is often necessary. Both the pet and its new owner need to find the rules of mutual communication, get to know each other's needs, and learn to communicate fluently. Challenges may arise at this stage, and a person with experience in this field would help to solve them. We offer the help of such people - mentors who can take care of the relationship between the new owner and the pet in the first weeks - to pets adopted through Pawster.",
+      text: "Experience shows that when a pet arrives in a new home, a transition phase is often necessary. Both the pet and its foster parent need to find the rules of mutual communication and get to know each other's needs. Challenges may arise at this stage, and a person with experience in this field can gladly help solve them. We offer the help of such people - mentors who can take care of the relationship between the you and your Pawster pet in the first weeks.",
     },
     {
       title: "Animal administration platform",
@@ -25,10 +25,9 @@ function OrganizationInfo() {
               <h3>Pawster benefits animal welfare organizations</h3>
             </div>
             <div className="section-text">
-              The goal of Pawster developers is to create a modern, independent
-              and unified care platform for animals kept in animal shelters.
-              Make sure that your animals are seen by the whole of New York
-              City!
+              The goal of the Pawster developers is to create a modern, independent
+              and unified platform for shelters to showcase their animals waiting to be adopted.
+              We want to ensure all animals are seen by willing New Yorkers, who want to lend a helping hand to give these animals all the love they deserve.
             </div>
           </div>
         </div>
