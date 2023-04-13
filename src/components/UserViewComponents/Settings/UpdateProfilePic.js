@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../../../context/AuthContext";
-import "./UpdateProfilePic.scss";
 import { db, storage } from "../.././../firebase/config";
 import { updateProfile } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import "./UpdateProfilePic.scss";
 
 function UpdateProfilePic({ handleLogOut }) {
   const { currentUser, userProfileFormValues, updateUserProfilePhoto } = useAuth();
@@ -13,7 +13,6 @@ function UpdateProfilePic({ handleLogOut }) {
     const file = e.target.files[0];
     const date = new Date().getTime();
     const storageRef = ref(storage, `${currentUser.displayName + date}`);
-    console.log("here in my car");
     try {
       await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
@@ -40,6 +39,10 @@ function UpdateProfilePic({ handleLogOut }) {
     
   };
 
+  useEffect(() => {
+
+  }, [userProfileFormValues, currentUser])
+
 
   return (
     <div className="wrapper">
@@ -57,7 +60,11 @@ function UpdateProfilePic({ handleLogOut }) {
           />
         </label>
         <h3 className="name">{currentUser.displayName}</h3>
-        <span>Age: {userProfileFormValues.age}</span>
+        {userProfileFormValues.age ? 
+        <span>Age: {userProfileFormValues.age}</span> :
+        null
+      }
+        
 
         <p className="description">{userProfileFormValues.aboutMe}</p>
         <button onClick={handleLogOut}>Logout</button>

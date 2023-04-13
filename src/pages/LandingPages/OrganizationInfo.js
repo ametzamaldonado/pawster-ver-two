@@ -32,8 +32,8 @@ function OrganizationInfo() {
           </div>
         </div>
         <div className="card-section">
-          {cardInfo.map((card) => (
-            <div className="card">
+          {cardInfo.map((card, index) => (
+            <div className="card" key={index}>
               <div className="title">
                 <h4>{card.title}</h4>
                 <div className="text">{card.text}</div>

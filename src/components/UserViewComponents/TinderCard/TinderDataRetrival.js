@@ -4,8 +4,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { collection, query, getDocs, setDoc, doc } from "@firebase/firestore";
 import TinderContainer from "./TinderContainer";
 
-function TinderDataRetrival() {
-  
+function TinderDataRetrival() { 
   const { currentUser } = useAuth();
   const [petsData, setPetsData] = useState([]);
 
@@ -25,9 +24,7 @@ function TinderDataRetrival() {
     let path = `users/${currentUser.uid}/matches`;
     const matches = query(collection(db, path));
     const querySnapshot = await getDocs(matches);
-    const userMatches = querySnapshot.docs.map((el) => el.data());
-    // console.log(userMatches); // work! 
-    
+    const userMatches = querySnapshot.docs.map((el) => el.data());    
     let result = await dataArray.filter((el) => !userMatches.some((match) => match.uid === el.uid));
     setPetsData(result);
   };

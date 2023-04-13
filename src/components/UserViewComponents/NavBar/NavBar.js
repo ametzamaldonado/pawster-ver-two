@@ -9,9 +9,9 @@ function NavScrollExample() {
     return (
         <div className='container-Navbar' >
             {
-                currentPath !== '/' ? 
+                currentPath !== '/home' ? // changed from "/"
                 (   
-                    <Link to='/'>
+                    <Link to='/home'>
                         <button className='no_buttonStyling round_styling navBar-button'>
                         <i className="bi bi-caret-left"></i> 
                     </button>
@@ -21,7 +21,7 @@ function NavScrollExample() {
             }
             
             <div className="navBar-profile">
-                <Link to='/profile'>
+                <Link to='/home/profile'>
                     <img
                         alt=""
                         src={currentUser.photoURL}
@@ -32,7 +32,7 @@ function NavScrollExample() {
                     </span>
                 </Link>
             </div>
-            <Link to='/settings'>
+            <Link to='/home/settings'>
                 <button type='submit' className='no_buttonStyling round_styling navBar-button'>
                 <i className="bi bi-gear"></i>
             </button>

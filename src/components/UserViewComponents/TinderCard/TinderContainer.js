@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useMotionValue, useAnimation } from "framer-motion";
 import CardButtons from "./CardButtons";
 import Card from './Card';
@@ -8,7 +8,6 @@ import BottomCardHints from "./BottomCardHints"
 import PetInfoCard from "./PetInfoCard";
 
 function TinderContainer({ petsData, addPetMatch }) {
-  console.log(petsData)
   const [currentIndex, setCurrentIndex] = useState(0);
   const [motionDirection, setMotionDirection] = useState(null);
 
@@ -32,8 +31,6 @@ function TinderContainer({ petsData, addPetMatch }) {
           }
       }
   });
-    // add to user's liked list;
-    // addPetMatch(currentPetInfo.uid)
   };
 
   const handleSwipeRight = () => {
@@ -65,7 +62,6 @@ function TinderContainer({ petsData, addPetMatch }) {
     target.classList.toggle("flip");
     frontCard.classList.toggle("none");
     backCard.classList.toggle("none");
-    console.log(target)
 };
  
   return (

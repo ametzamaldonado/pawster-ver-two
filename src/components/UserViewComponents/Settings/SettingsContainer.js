@@ -2,14 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../../context/AuthContext";
 import MentorForm from './MentorForm';
-import "./SettingsContainer.scss";
-
-
 import UpdateProfilePic from './UpdateProfilePic';
 import DeleteUserContainer from './DeleteUserContainer';
+import "./SettingsContainer.scss";
 
 function SettingsContainer() {
-    const { logout, currentUser, userProfileFormValues } = useAuth();
+    const { logout, currentUser } = useAuth();
     const navigate = useNavigate();
 
     const handleLogOut = async () => {
@@ -28,11 +26,7 @@ function SettingsContainer() {
         <div className='setting-profile-container'>
             <div className='default-column'>
                 <UpdateProfilePic handleLogOut={handleLogOut}/>
-                
-
-                
-                <MentorForm userProfileFormValues={userProfileFormValues} currentUser={currentUser}/>
-
+                <MentorForm currentUser={currentUser}/>
                 <DeleteUserContainer currentUser={currentUser}/> 
             </div>
             

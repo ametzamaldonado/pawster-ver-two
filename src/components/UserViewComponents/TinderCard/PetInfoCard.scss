@@ -1,5 +1,5 @@
 .petInfo {
-  background-color: rgba(240, 53, 71, 0.7);
+  background-color: #fff;
   background-position: center center;
   box-shadow: rgb(136, 136, 136) 5px 10px 10px;
   border-radius: 10px;
@@ -51,7 +51,7 @@
 
             span {
                 font-weight: 500;
-                color:white;
+                color:rgba(240, 53, 71, 0.7);
             }
             
           }
@@ -65,7 +65,7 @@
 
         span {
             font-weight: 500;
-            color:white;
+            color:rgba(240, 53, 71, 0.7);
         }
     }
 }

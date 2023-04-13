@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Tabs, Tab, Badge } from 'react-bootstrap';
-import './TabsContainer.css'
+import { useAuth } from '../../../context/AuthContext';
+import { collection, onSnapshot } from "@firebase/firestore";
+import { db } from "../../../firebase/config";
 import MatchesContainer from '../Matches/MatchesContainer';
 import MessageContainer from '../Messages/MessageContainer';
-import { useAuth } from '../../../context/AuthContext';
-import { collection, query, onSnapshot } from "@firebase/firestore";
-import { db } from "../../../firebase/config";
+import './TabsContainer.css'
 
 function TabsContainer() {
   const { currentUser } = useAuth();
-  const [searchInput, setSearchInput] = useState('');
+  // Below variable meant to implement a way to sort through messages!
+  // const [searchInput, setSearchInput] = useState('');
   const [userPetMatches, setUserPetMatches] = useState([]);
 
 

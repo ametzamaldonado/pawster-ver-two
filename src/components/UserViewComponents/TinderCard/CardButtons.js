@@ -3,7 +3,6 @@ import './CardButtons.scss';
 
 function CardButtons({ motionDirection, handleSwipeLeft, handleSwipeRight, outOfCards, handleCardsFlipped }) {
 
-    console.log(outOfCards)
     return (
         <>
             <div className="card-buttons">
@@ -12,7 +11,7 @@ function CardButtons({ motionDirection, handleSwipeLeft, handleSwipeRight, outOf
                 </button>
 
                 <button className='no_buttonStyling' onClick={handleCardsFlipped} disabled={outOfCards}>
-                <i class="bi bi-info-lg swipe-icon" id="info-icon" hidden={outOfCards ? true : false }></i>
+                <i className="bi bi-info-lg swipe-icon" id="info-icon" hidden={outOfCards ? true : false }></i>
                 </button>
 
 

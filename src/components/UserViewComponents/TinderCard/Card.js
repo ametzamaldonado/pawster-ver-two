@@ -14,7 +14,6 @@ export default function Card({
   resetValues,
   addPetMatch,
 }) {
-  console.log(data, data.uid);
 
   // Some styling for the card
   const style = {
@@ -66,8 +65,6 @@ export default function Card({
       });
     }
   };
-
-  console.log(motionDirection, currentIndex);
 
   return (
     <div className="card-component">

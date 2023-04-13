@@ -18,7 +18,7 @@ const Login = () => {
 
     try {
       await login(email, password);
-      navigate("/");
+      navigate("/home"); // changed from "/"
     } catch (error) {
       const errorCode = error.code;
       if (errorCode === "auth/wrong-password") {
@@ -37,7 +37,7 @@ const Login = () => {
       <div className="formContainer">
         <div className="formWrapper">
           <span className="logo">
-            <a href="/home">
+            <a href="/"> {/* changed from "/home" */}
               <img src={logo} alt="logo" />
             </a>
           </span>

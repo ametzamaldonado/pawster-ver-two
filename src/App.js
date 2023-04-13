@@ -11,6 +11,12 @@ function App() {
         <Route path="/" />
         <Route
           index
+          element={<LandingPage />}
+        />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+
+        <Route path="/home"
           element={
             <ProtectedRoute>
               <Home />
@@ -18,7 +24,7 @@ function App() {
           }
         />
         <Route
-          path="profile"
+          path="/home/profile"
           element={
             <ProtectedRoute>
               <Profile />
@@ -26,17 +32,13 @@ function App() {
           }
         />
         <Route
-          path="settings"
+          path="/home/settings"
           element={
             <ProtectedRoute>
               <Settings />
             </ProtectedRoute>
           }
         />
-
-        <Route path="home" element={<LandingPage />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
       </Routes>
     </div>
   );

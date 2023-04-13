@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Add from "../../img/add-image-64.png"
-import Unknown from "../../img/unknown_person.jpeg"
+import Add from "../../img/add-image-64.png";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { db, storage } from "../../firebase/config";
@@ -12,7 +11,7 @@ import logo from "../../img/white-red.png";
 
 const Register = () => {
   const { signup, setUserType } = useAuth();
-  const [ userTypeRadio, setUserTypeRadio ] = useState('user')
+  const [userTypeRadio, setUserTypeRadio] = useState("user");
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ const Register = () => {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const passwordConfirmation = e.target[3].value;
-    const file = e.target[4].files[0] || Unknown;
+    const file = e.target[4].files[0];
 
     if (password !== passwordConfirmation) {
       return setErr("Passwords do not match");
@@ -46,20 +45,19 @@ const Register = () => {
                 photoURL: downloadURL,
               });
               //create user on firestore
-           
-                await setDoc(doc(db, "users", response.user.uid), {
-                  uid: response.user.uid,
-                  displayName,
-                  email,
-                  photoURL: downloadURL,
-                  typeOfUser: userTypeRadio ,
-                });
-  
-              
-                setUserType(userTypeRadio)
+
+              await setDoc(doc(db, "users", response.user.uid), {
+                uid: response.user.uid,
+                displayName,
+                email,
+                photoURL: downloadURL,
+                typeOfUser: userTypeRadio,
+              });
+
+              setUserType(userTypeRadio);
               // await setUserTypeDocs(userType, response)
 
-              navigate("/");
+              navigate("/home"); // changed from "/"
             } catch (err) {
               console.log(err);
               setErr(err);
@@ -80,18 +78,20 @@ const Register = () => {
     const input = document.getElementById("file");
     const label = document.getElementById("labelText");
     if (input.value) {
-      label.innerHTML = "Photo selected <i class='bi bi-check'></i>";
+      label.innerHTML = "Photo selected <i className='bi bi-check'></i>";
     } else {
       label.innerHTML = "Add an avatar";
     }
-  }  
-  
+  }
+
   return (
     <div className="wholePage-container">
       <div className="formContainer">
         <div className="formWrapper">
           <span className="logo">
-          <a href="/home">
+            <a href="/">
+              {" "}
+              {/* changed from "/home" */}
               <img src={logo} alt="logo" />
             </a>
           </span>
@@ -101,11 +101,11 @@ const Register = () => {
               <input
                 type="radio"
                 value="user"
-                checked={userTypeRadio === 'user'}
+                checked={userTypeRadio === "user"}
                 onChange={(e) => setUserTypeRadio(e.target.value)}
                 required="required"
-              />
-              {' '}User
+              />{" "}
+              User
             </label>
             <label>
               <input
@@ -114,11 +114,11 @@ const Register = () => {
                 disabled={true} // disabled until I can get the shelter view working!
                 checked={userTypeRadio === "shelter"}
                 onChange={(e) => setUserTypeRadio(e.target.value)}
-              />
-              {' '}Shelter
+              />{" "}
+              Shelter
             </label>
           </div>
-          <form onSubmit={handleSubmitUser }>
+          <form onSubmit={handleSubmitUser}>
             <label>Username</label>
             <input required type="text" placeholder="Username.." />
             <label>Email</label>
@@ -128,7 +128,14 @@ const Register = () => {
             <label>Password Confirmation</label>
             <input required type="password" placeholder="Confirm Password.." />
 
-            <input required style={{ display: "none" }} type="file" id="file" accept=".jpg, .jpeg, .png" onChange={showFileName} />
+            <input
+              required
+              style={{ display: "none" }}
+              type="file"
+              id="file"
+              accept=".jpg, .jpeg, .png"
+              onChange={showFileName}
+            />
             <label htmlFor="file">
               <img src={Add} alt="" />
               <span className="preview"></span>

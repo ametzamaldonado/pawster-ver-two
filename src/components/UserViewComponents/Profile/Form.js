@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import ContactInfo from "./FormComponents/ContactInfo";
-import "./Form.scss";
-import IncomeInfo from "./FormComponents/IncomeInfo";
 import { db } from "../../../firebase/config";
 import { useAuth } from "../../../context/AuthContext";
 import { updateDoc, doc, getDoc } from "firebase/firestore";
+import ContactInfo from "./FormComponents/ContactInfo";
+import IncomeInfo from "./FormComponents/IncomeInfo";
+import "./Form.scss";
 
 function Form() {
   const { currentUser } = useAuth();
@@ -51,11 +51,9 @@ function Form() {
       });
   }
 
-//   Not sure if handle Submit was able to submit form inputs
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    console.log(userInputData)
     try {
       //create user on firestore
       await updateDoc(userRef, {
@@ -71,6 +69,7 @@ function Form() {
         address: userInputData["address"],
         phone_number: userInputData['phone_number'],
       });
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -81,8 +80,7 @@ function Form() {
     async function getData (){
         const userData = (await getDoc(userRef)).data();
         if(userData['rentMortage']) {
-            console.log(userData)
-            setUserInputData(userData);
+          setUserInputData(userData);
         }
     }
 

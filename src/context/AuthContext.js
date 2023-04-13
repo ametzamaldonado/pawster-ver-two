@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { onAuthStateChanged, deleteUser } from "firebase/auth";
-import { auth } from "../firebase/config";
+import { db, auth } from "../firebase/config";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,13 +9,12 @@ import {
 
 import {
   deleteDoc,
-  doc,
   collection,
   query,
   where,
   getDocs,
 } from "firebase/firestore";
-import { db } from "../firebase/config";
+
 
 const AuthContext = React.createContext();
 
@@ -41,7 +40,7 @@ export function AuthProvider({ children }) {
     return signOut(auth)
       .then(() => {
         // Sign-out successful.
-        console.log("Successfully signed out!");
+        console.log("Successfully signing you out!");
       })
       .catch((error) => {
         // An error happened.
@@ -69,6 +68,7 @@ export function AuthProvider({ children }) {
       alert("Error deleting user: ", error);
     }
   }
+  
 
   const findUserType = async (id) => {
     const userInfo = query(collection(db, "users"), where("uid", "==", id));
@@ -100,7 +100,7 @@ export function AuthProvider({ children }) {
         // User is signed in
         setCurrentUser(user);
         findUserType(user.uid);
-        console.log(user);
+        // console.log(user);
       } else {
         // User is signed out
         setCurrentUser(null);

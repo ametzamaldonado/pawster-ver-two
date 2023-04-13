@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DeleteModal from "./DeleteModal";
-import "./DeleteUserContainer.scss";
 import { useAuth } from "../../../context/AuthContext";
+import "./DeleteUserContainer.scss";
 
 function DeleteUserContainer({ currentUser }) {
   const { deleteUserAccount } = useAuth();

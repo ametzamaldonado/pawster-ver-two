@@ -35,14 +35,14 @@ function TeamCards() {
       github: "",
       linkedIn: "",
       personalProfolio: "",
-    }
+    },
   ];
   return (
     <div className="team-container">
       <h1>Team</h1>
       <div className="team-cards-container">
         {teamCardInfo.map((person, index) => (
-          <div className="team-card">
+          <div className="team-card" key={index}>
             <div className="team-image">
               <img src={person.imgLink} alt={`teamMember-${index}`} />
             </div>
@@ -51,7 +51,7 @@ function TeamCards() {
             <p>{person.info}</p>
             <div className="social-media">
               <a href={`mailto:${person.email}`}>
-                <i class="bi bi-envelope"></i>
+                <i className="bi bi-envelope"></i>
               </a>
               {person.github ? (
                 <>
@@ -60,21 +60,21 @@ function TeamCards() {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <i class="bi bi-github"></i>
+                    <i className="bi bi-github"></i>
                   </a>
                   <a
                     href={person.linkedIn}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <i class="bi bi-linkedin"></i>
+                    <i className="bi bi-linkedin"></i>
                   </a>
                   <a
                     href={person.personalProfolio}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <i class="bi bi-link"></i>
+                    <i className="bi bi-link"></i>
                   </a>
                 </>
               ) : null}

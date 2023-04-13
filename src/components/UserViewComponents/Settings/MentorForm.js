@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { db } from "../../../firebase/config";
-import Alert from 'react-bootstrap/Alert';
+import { useAuth } from "../../../context/AuthContext";
+import Alert from "react-bootstrap/Alert";
 import "./MentorForm.scss";
 
-
-const sendContactForm = async ({ userID, name, email, comment, phoneNumber, bestMethodOfContact }) => {
+const sendContactForm = async ({
+  userID,
+  name,
+  email,
+  comment,
+  phoneNumber,
+  bestMethodOfContact,
+}) => {
   try {
     const docRef = collection(db, "mentorRequest");
     await addDoc(docRef, {
@@ -24,24 +31,21 @@ const sendContactForm = async ({ userID, name, email, comment, phoneNumber, best
   }
 };
 
-function MentorForm({userProfileFormValues, currentUser}) {
-  console.log(userProfileFormValues)
-
+function MentorForm({ currentUser }) {
+  const { userProfileFormValues } = useAuth();
   const [uploadMessage, setUploadMessage] = useState("");
-// Form values
-const [name, setName] = useState("");
-const [email, setEmail] = useState("");
-const [phoneNumber, setPhoneNumber] = useState("");
-const [comment, setComment] = useState("");
-const [bestMethodOfContact, setBestMethodOfContact] = useState('')
+  // Form values
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [comment, setComment] = useState("");
+  const [bestMethodOfContact, setBestMethodOfContact] = useState("");
 
-useEffect(() => {
-  if (userProfileFormValues.length) {
-    setName(userProfileFormValues.firstName + " " + userProfileFormValues.lastName);
-    setPhoneNumber(userProfileFormValues.phone_number);
-  }
-  setEmail(currentUser.email);
-}, [userProfileFormValues])
+  useEffect(() => {
+    let namePlaceHolder = `${userProfileFormValues?.firstName || ''} ${userProfileFormValues?.lastName || ''}`
+    setName(namePlaceHolder);
+    setEmail(currentUser.email || '');
+  }, [userProfileFormValues, currentUser]);
 
   const submitContact = async (e) => {
     e.preventDefault();
@@ -60,13 +64,16 @@ useEffect(() => {
       setEmail("");
       setPhoneNumber("");
       setComment("");
-      setBestMethodOfContact("")
-      setUploadMessage("We're happy to help. A Pawster Mentor will reach out in the next 24-48hrs. ");
+      setBestMethodOfContact("");
+      setUploadMessage(
+        "We're happy to help. A Pawster Mentor will reach out in the next 24-48hrs. "
+      );
     } else {
-      setUploadMessage("Something went wrong! Please try again later or call (800)-123-4567 for customer service.");
+      setUploadMessage(
+        "Something went wrong! Please try again later or call (800)-123-4567 for customer service."
+      );
     }
   };
-
 
   return (
     <div className="mentor-form-container">
@@ -74,16 +81,24 @@ useEffect(() => {
       <div>
         <div>
           {uploadMessage.includes("We're happy") && (
-            <Alert variant="success" onClose={() => setUploadMessage("")} dismissible>
-         {uploadMessage}
-          </Alert>
+            <Alert
+              variant="success"
+              onClose={() => setUploadMessage("")}
+              dismissible
+            >
+              {uploadMessage}
+            </Alert>
           )}
 
-        {uploadMessage.includes("Something") && (
-            <Alert variant="danger" onClose={() => setUploadMessage("")} dismissible>
-         {uploadMessage}
-          </Alert>
-          )}        
+          {uploadMessage.includes("Something") && (
+            <Alert
+              variant="danger"
+              onClose={() => setUploadMessage("")}
+              dismissible
+            >
+              {uploadMessage}
+            </Alert>
+          )}
         </div>
 
         <form onSubmit={submitContact}>

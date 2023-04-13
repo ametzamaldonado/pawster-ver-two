@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MatchesCard from "./MatchesCard";
-import "./MatchesContainer.scss";
 import NoMatches from "./NoMatches";
+import "./MatchesContainer.scss";
 
 function MatchesContainer({ userPetMatches }) {
   const [noMatches, setNoMatches] = useState(true);

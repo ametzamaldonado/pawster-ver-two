@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import ImagesDisplay from './ImagesDisplay';
 import Form from './Form'
-import './ProfileContainer.scss';
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
+import { 
+    ref, 
+    uploadBytesResumable, 
+    getDownloadURL 
+} from "firebase/storage";
+import { 
+    doc, 
+    updateDoc, 
+    arrayUnion, 
+    arrayRemove, 
+    getDoc 
+} from "firebase/firestore";
 import { db, storage } from '../../../firebase/config';
 import { useAuth } from '../../../context/AuthContext';
+import './ProfileContainer.scss';
 
 function ProfileContainer() {
     const { currentUser } = useAuth(); 
@@ -16,7 +26,6 @@ function ProfileContainer() {
 
 
     const handleSubmitPhotos = async (photo) => {
-        console.log('add', photo);
         // create a unique image name
         const date = new Date().getTime();
         const storageRef = ref(storage, `${currentUser.displayName + date}`);
@@ -37,13 +46,12 @@ function ProfileContainer() {
             const docSnap = await getDoc(photosPhotedRef);
 
             if (docSnap.exists()) {
-              console.log("Document data:", docSnap.data());
+                setUserImages(docSnap.data());
             } 
         
     }
 
     const removePhotoFromUser = async (photoLink) => {
-        console.log('remove');
         await updateDoc(photosPhotedRef, {
             imagesPosted: arrayRemove(photoLink)
         });  
@@ -54,12 +62,11 @@ function ProfileContainer() {
             const data = (await getDoc(photosPhotedRef)).data();
             if(data) {
                 setUserImages(data['imagesPosted']);
-            }
-            
+            }   
         }
 
         getData()
-    }, [photosPhotedRef])
+    }, [photosPhotedRef, userImages])
 
     
     return (
@@ -69,7 +76,8 @@ function ProfileContainer() {
                     {
                         <ImagesDisplay 
                             images={userImages} 
-                            handleSubmitPhotos={handleSubmitPhotos} removePhotoFromUser={removePhotoFromUser}
+                            handleSubmitPhotos={handleSubmitPhotos} 
+                            removePhotoFromUser={removePhotoFromUser}
                         />
                         }
                 </div>

@@ -27,8 +27,6 @@ function ContactUs() {
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
 
-  console.log(name, email, comment);
-
   const submitContact = async (e) => {
     e.preventDefault();
     console.log(e);

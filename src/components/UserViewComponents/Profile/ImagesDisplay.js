@@ -25,7 +25,7 @@ function ImagesDisplay({ images, handleSubmitPhotos, removePhotoFromUser}) {
       );
     } else {
       elements.push(
-        <div className="gallery-container">
+        <div className="gallery-container" key={i}>
           <div className="gallery__img empty_img" key={`div_${i}`}>
             <span className="top-left">{i + 1}</span>
 

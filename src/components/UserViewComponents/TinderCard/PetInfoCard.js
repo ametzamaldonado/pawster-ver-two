@@ -9,7 +9,7 @@ function PetInfoCard({ card }) {
       {/* Images */}
       <div className="petImages-container">
         {images?.map((img, idx) => (
-          <div className="petImg-div">
+          <div className="petImg-div" key={idx}>
           <img src={img} alt={`${name}-${idx}`} />
           </div>
         ))}
