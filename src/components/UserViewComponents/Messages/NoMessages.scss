@@ -37,5 +37,9 @@
   
     img {
       width: 100%;
+
+      @include tablet{
+        width: 80%;
+      }
     }
 }

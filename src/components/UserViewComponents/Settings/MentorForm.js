@@ -44,6 +44,7 @@ function MentorForm({ currentUser }) {
   useEffect(() => {
     let namePlaceHolder = `${userProfileFormValues?.firstName || ''} ${userProfileFormValues?.lastName || ''}`
     setName(namePlaceHolder);
+    setPhoneNumber(userProfileFormValues.phone_number || '')
     setEmail(currentUser.email || '');
   }, [userProfileFormValues, currentUser]);
 

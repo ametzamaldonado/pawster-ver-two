@@ -22,7 +22,18 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0;
-  /* padding: 2px; */
+
+
+  @include tablet {
+    justify-content: center;
+    width: 100%;
+    padding: 50px;
+  }
+
+  @include mobile{
+    justify-content: center;
+    padding: 0;
+  }
 }
 
 .no-matches {

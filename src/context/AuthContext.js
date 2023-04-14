@@ -112,7 +112,8 @@ export function AuthProvider({ children }) {
   }, []);
 
   if (loading) {
-    return <>Loading...</>;
+    console.log('loading')
+    // return <>Loading...</>;
   }
 
   const value = {

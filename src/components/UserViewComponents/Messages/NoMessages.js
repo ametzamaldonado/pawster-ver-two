@@ -8,6 +8,7 @@ function NoMessages() {
         <div className="text">
             <h4>You have no messages</h4>
             <span className='grey-text'>Swipe on some pets and send them a message to let them know your interested!</span>
+            <br/>
             <img src={noPets} alt="no mesages" />
         </div>
     </div>

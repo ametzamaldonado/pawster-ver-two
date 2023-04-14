@@ -32,6 +32,9 @@
     padding: 30px 80px;
   }
 
+  @include mobile {
+    padding: 2px;
+  }
   .info-img {
     width: auto;
     height: 250px;
@@ -87,7 +90,7 @@
         }
 
         @include mobile {
-          padding: 90px;
+          padding: 0;
         }
 
         .text {
@@ -104,6 +107,11 @@
             @include tablet {
               padding: 60px;
             }
+
+            @include mobile {
+              padding: 40px;
+            }
+
             p {
               font-size: large;
             }
