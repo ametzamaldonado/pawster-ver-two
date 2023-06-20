@@ -44,6 +44,16 @@ Originally starting off as a capstone project, Pawster was presented as a soluti
       npm run install // to download all dependencies
       npm start // to verify that the website is up and running.
       ```
+8. Remember to create a .env file and input the following firebase configuration
+    ```
+    REACT_APP_FIREBASE_KEY=Your_firebaseConfig_apiKey
+    REACT_APP_FIREBASE_AUTH_DOMAIN=Your_firebaseConfig_authDomain
+    REACT_APP_FIREBASE_DATABASE=Your_firebaseConfig_databaseURL
+    REACT_APP_FIREBASE_PROJECT_ID=Your_firebaseConfig_projectId
+    REACT_APP_FIREBASE_STORAGE_BUCKET=Your_firebaseConfig_storageBucket
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=Your_firebaseConfig_messagingSenderId
+    REACT_APP_FIREBASE_APP_ID=Your_firebaseConfig_appId
+  ```
 
 
 #### Usage and Features:
