@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Pawster
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Originally starting off as a capstone project, Pawster was presented as a solution for targeting overcrowding in shelters and as a method to decrease the number of shelter animals euthanized every year. Pawster was designed to become a platform used to connect both users and pets in need of fostering. Using a more modern approach, we aimed to create a user friendly experience relying on the popular Tinder swiping functionality to help sort through the available pets. While this started off as a group effort, after polishing and presenting our original project, this repository is the result of taking into account design changes and constructive criticism recieved from panelists and fellow peers.
 
-## Available Scripts
 
-In the project directory, you can run:
+#### This project relies on Firebase for both database usage and email login. In order to inilaize and set up Firebase for email sign-in follow the link [here](https://github.com/ametzamaldonado/react-app-email-firebase) to start.
+ 
+ 
+- After creating a Firebase project you should land on the Project Overview page, scrolling slight down, click on the Cloud Firestore icon. Select the "Create database" button and follow the below prompts to set up:
+  - Select "production mode";
+  - No need to change Firestore location, Google automiatically sets your location
+  - Click enable and wait for the set up to be complete
+  
+- Once the database has been setup, you should be automatically navigated to the "panel view" where the tabs "Data, Rules, Indexes, Usage" will be visible. 
+  - Once here, click on the Rules tab and make the following changes necessary to grant and restrict user access permissions
+     ```
+     rules_version = '2';
+    // Allow read/write access on all documents to any user signed in to the application
+    service cloud.firestore {
+      match /databases/{database}/documents {
+    // Allow authenticated users to read and write in all collections except for contactForm
+        match /{document=**} {
+          allow read, write: if request.auth != null;
+        }
+    // Allow public users to read and write in the contactForm collection
+        match /contactForm/{document=**} {
+          allow read, write: if true;
+        }
+      }
+    }
 
-### `npm start`
+#### In order to install this project locally following the below steps to ensure all necessary packages run smoothly:
+  
+1. Log into your own account on GitHub.
+2. In the '+' menu on the upper right, choose Import repository
+3. Complete the Import form fields:
+    - Your old repository’s clone URL: enter this exactly: https://github.com/ametzamaldonado/pawster-ver-two 
+    - Choose your own account as owner and type a repo name
+4. Click Begin import.
+5. Wait for the import to complete. If the repo is imported successfully, you will see a confirmation message. If you don’t see a success message, go back to 1 and start over.
+6. Confirm your copy exists. Click the link on your new repository to see it on GitHub.
+7. When complete make sure to clone the repository locally and run the folowing commands:
+      ```
+      npm run install // to download all dependencies
+      npm start // to verify that the website is up and running.
+      ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Usage and Features:
+ ~~ Incoming info ~~
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### ** **Click here for [Deployed Site](https://pawster-two-demo.netlify.app/)** **
