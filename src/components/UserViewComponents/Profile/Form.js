@@ -1,27 +1,21 @@
 import React from "react";
 import ContactInfo from "./FormComponents/ContactInfo";
 import IncomeInfo from "./FormComponents/IncomeInfo";
+import { useRegistrationContext } from "../../../context/UserRegistrationContext"
 import "./Form.scss";
 
 function Form() {
+  const { handleSubmit } = useRegistrationContext()
 
   return (
     <div className="allForms">
-      {/* <form onSubmit={handleSubmit}> */}
-   
-        {/* <ContactInfo
-          userInputData={userInputData}
-          handleTextChange={handleTextChange}
-          handleAddressChange={handleAddressChange}
-        />
-        <IncomeInfo
-          userInputData={userInputData}
-          handleTextChange={handleTextChange}
-        /> */}
+      <form onSubmit={handleSubmit}>
+        <ContactInfo />
+        <IncomeInfo />
         <button type="submit" >
           Submit
         </button>
-      {/* </form> */}
+      </form>
     </div>
   );
 }

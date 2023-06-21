@@ -1,6 +1,9 @@
 import React from "react";
+import { useRegistrationContext } from "../../../../context/UserRegistrationContext";
 
-function IncomeInfo({ userInputData, handleTextChange }) {
+function IncomeInfo() {
+  const { userInputData, handleTextChange } = useRegistrationContext()
+
   return (
     <div className="incomeInfo-form form-containers">
 

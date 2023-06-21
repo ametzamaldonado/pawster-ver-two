@@ -4,6 +4,7 @@ import {
   TabsContainer,
   ProfileContainer,
 } from "../../components";
+import { UserRegistrationProvider } from "../../context/UserRegistrationContext";
 
 function Profile() {
   return (
@@ -14,7 +15,9 @@ function Profile() {
       </div>
       <div className="right-container">
         <div>
-          <ProfileContainer />
+          <UserRegistrationProvider>
+            <ProfileContainer />
+          </UserRegistrationProvider>
         </div>
       </div>
     </>

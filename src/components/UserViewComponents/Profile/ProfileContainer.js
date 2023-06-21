@@ -82,7 +82,6 @@ function ProfileContainer() {
                         }
                 </div>
                 <Form />
-
             </div>
         </div>
     )

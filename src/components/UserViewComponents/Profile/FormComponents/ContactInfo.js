@@ -1,6 +1,8 @@
 import React from "react";
+import { useRegistrationContext } from "../../../../context/UserRegistrationContext";
 
-function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
+function ContactInfo() {
+  const { userInputData, handleTextChange } = useRegistrationContext()
   return (
     <div className="contactInfo-form form-containers">
       {/* About Me */}
@@ -82,7 +84,7 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
             autoComplete="street_address"
             placeholder="Street Address"
             value={userInputData['address'].street_address}
-            onChange={handleAddressChange}
+            onChange={handleTextChange}
             required
           />
 
@@ -93,7 +95,7 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
             autoComplete="street_address"
             placeholder="Street Address line 2 (optional)"
             value={userInputData['address'].street_address_two}
-            onChange={handleAddressChange}
+            onChange={handleTextChange}
           />
         </div>
 
@@ -105,7 +107,7 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
               name="postal_code"
               autoComplete="postal_code"
               value={userInputData['address'].postal_code}
-              onChange={handleAddressChange}
+              onChange={handleTextChange}
               required
             />
           </div>
@@ -119,7 +121,7 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
               name="city"
               autoComplete="address-level2"
               value={userInputData['address'].city}
-              onChange={handleAddressChange}
+              onChange={handleTextChange}
             />
           </div>
 
@@ -129,7 +131,7 @@ function ContactInfo({ userInputData, handleTextChange, handleAddressChange }) {
               id="state"
               name="state"
               value={userInputData['address'].state}
-              onChange={handleAddressChange}
+              onChange={handleTextChange}
               required
             >
               <option value="---">---</option>
