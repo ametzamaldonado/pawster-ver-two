@@ -1,0 +1,18 @@
+.confirmation-display {
+
+    .single-entry{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+        .variable-name {
+            font-weight: bold;
+            color: #f03547;
+        }
+
+        .variable-response {
+            padding: 2px;
+            text-align: right;
+        }
+    }
+}

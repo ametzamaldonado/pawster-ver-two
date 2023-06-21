@@ -6,17 +6,18 @@ import { db, storage } from "../../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { updateProfile } from "firebase/auth";
+import MultistepForm from "../../pages/MultistepForm";
 
 import logo from "../../img/white-red.png";
 
 const Register = () => {
   const { signup, setUserType } = useAuth();
   const [userTypeRadio, setUserTypeRadio] = useState("user");
+  const [showQuestions, setQuestionsDisplay] = useState(true);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
-  const handleSubmitUser = async (e) => {
+  const handleSubmitRegister = async (e) => {
     setLoading(true);
     e.preventDefault();
 
@@ -44,8 +45,8 @@ const Register = () => {
                 displayName,
                 photoURL: downloadURL,
               });
-              //create user on firestore
 
+              //create user on firestore
               await setDoc(doc(db, "users", response.user.uid), {
                 uid: response.user.uid,
                 displayName,
@@ -57,7 +58,7 @@ const Register = () => {
               setUserType(userTypeRadio);
               // await setUserTypeDocs(userType, response)
 
-              navigate("/home"); // changed from "/"
+              // navigate("/home"); // changed from "/"
             } catch (err) {
               console.log(err);
               setErr(err);
@@ -66,6 +67,7 @@ const Register = () => {
             }
           });
         });
+        setQuestionsDisplay(true)
       } catch (err) {
         // db catch
         setErr("Failed to create an account because: " + err);
@@ -88,70 +90,81 @@ const Register = () => {
     <div className="wholePage-container">
       <div className="formContainer">
         <div className="formWrapper">
-          <span className="logo">
-            <a href="/">
-              {" "}
-              {/* changed from "/home" */}
-              <img src={logo} alt="logo" />
-            </a>
-          </span>
-          <span className="title">Register</span>
-          <div className="radio-selection">
-            <label>
-              <input
-                type="radio"
-                value="user"
-                checked={userTypeRadio === "user"}
-                onChange={(e) => setUserTypeRadio(e.target.value)}
-                required="required"
-              />{" "}
-              User
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="shelter"
-                disabled={true} // disabled until I can get the shelter view working!
-                checked={userTypeRadio === "shelter"}
-                onChange={(e) => setUserTypeRadio(e.target.value)}
-              />{" "}
-              Shelter
-            </label>
-          </div>
-          <form onSubmit={handleSubmitUser}>
-            <label>Username</label>
-            <input required type="text" placeholder="Username.." />
-            <label>Email</label>
-            <input required type="email" placeholder="Email.." />
-            <label>Password</label>
-            <input required type="password" placeholder="Password.." />
-            <label>Password Confirmation</label>
-            <input required type="password" placeholder="Confirm Password.." />
+          {showQuestions ? (
+            <MultistepForm />
+          ) : (
+            <>
+              <span className="logo">
+                <a href="/">
+                  {" "}
+                  {/* changed from "/home" */}
+                  <img src={logo} alt="logo" />
+                </a>
+              </span>
+              <span className="title">Register</span>
+              <div className="radio-selection">
+                <label>
+                  <input
+                    type="radio"
+                    value="user"
+                    checked={userTypeRadio === "user"}
+                    onChange={(e) => setUserTypeRadio(e.target.value)}
+                    required="required"
+                  />{" "}
+                  User
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="shelter"
+                    disabled={true} // disabled until I can get the shelter view working!
+                    checked={userTypeRadio === "shelter"}
+                    onChange={(e) => setUserTypeRadio(e.target.value)}
+                  />{" "}
+                  Shelter
+                </label>
+              </div>
+              <form onSubmit={handleSubmitRegister}>
+                <label>Username</label>
+                <input required type="text" placeholder="Username.." />
+                <label>Email</label>
+                <input required type="email" placeholder="Email.." />
+                <label>Password</label>
+                <input required type="password" placeholder="Password.." />
+                <label>Password Confirmation</label>
+                <input
+                  required
+                  type="password"
+                  placeholder="Confirm Password.."
+                />
 
-            <input
-              required
-              style={{ display: "none" }}
-              type="file"
-              id="file"
-              accept=".jpg, .jpeg, .png"
-              onChange={showFileName}
-            />
-            <label htmlFor="file">
-              <img src={Add} alt="" />
-              <span className="preview"></span>
-              <span id="labelText">Add an avatar</span>
-            </label>
-            <button type="submit">Sign up</button>
-            {loading && "Uploading and compressing the image please wait..."}
-            {err && <span>Something went wrong: {err}</span>}
-          </form>
-          <p>
-            You don't have an account?
-            <Link to="/login">
-              {" "}
-              <button className="no_buttonStyling">Login</button>
-            </Link>
-          </p>
+                <input
+                  required
+                  style={{ display: "none" }}
+                  type="file"
+                  id="file"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={showFileName}
+                />
+                <label htmlFor="file">
+                  <img src={Add} alt="" />
+                  <span className="preview"></span>
+                  <span id="labelText">Add an avatar</span>
+                </label>
+                <button type="submit">Sign up</button>
+                {loading &&
+                  "Uploading and compressing the image please wait..."}
+                {err && <span>Something went wrong: {err}</span>}
+              </form>
+              <p>
+                You don't have an account?
+                <Link to="/login">
+                  {" "}
+                  <button className="no_buttonStyling">Login</button>
+                </Link>
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>
