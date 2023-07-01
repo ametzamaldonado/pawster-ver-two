@@ -53,7 +53,7 @@ Originally starting off as a capstone project, Pawster was presented as a soluti
     REACT_APP_FIREBASE_STORAGE_BUCKET=Your_firebaseConfig_storageBucket
     REACT_APP_FIREBASE_MESSAGING_SENDER_ID=Your_firebaseConfig_messagingSenderId
     REACT_APP_FIREBASE_APP_ID=Your_firebaseConfig_appId
-  ```
+   ```
 
 
 #### Usage and Features:
